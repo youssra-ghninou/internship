@@ -15,5 +15,17 @@
   "cSpell.words": ["allroadmaps", "commitlint", "haspopup", "tailwindcss"],
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorCustomizations": {
+    "[*Dark*]": {
+      "progressBar.background": "#0D9373",
+      "notificationsInfoIcon.foreground": "#0D9373",
+      "editor.selectionBackground": "#0D937333"
+    },
+    "[*Light*]": {
+      "progressBar.background": "#0D9373",
+      "notificationsInfoIcon.foreground": "#0D9373",
+      "editor.selectionBackground": "#0D937333"
+    }
   }
 }
