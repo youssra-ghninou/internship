@@ -1,5 +1,5 @@
+import AuthProvider from '../providers/authProvider'
 import './globals.css'
-import AuthProvider from './providers/authProvider'
 
 export const metadata = {
   title: 'E-Internship',

@@ -2,9 +2,14 @@
 
 import { useRouter } from 'next/navigation'
 
-function GoBackButton() {
+export default function GoBackButton() {
   const route = useRouter()
-  return <button onClick={() => route.back()}>go back</button>
+  return (
+    <button
+      className='w-fit rounded-md bg-gray-500 px-2'
+      onClick={() => route.back()}
+    >
+      go back
+    </button>
+  )
 }
-
-export default GoBackButton

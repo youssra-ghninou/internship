@@ -4,7 +4,7 @@ import { getUsers } from '../../lib/queries'
 export default async function Profile() {
   const users = await getUsers()
   return (
-    <div className='bg-red-100 py-6'>
+    <div className='w-fit bg-red-100 py-6'>
       {users.map((user) => (
         <div key={user.id} className='user'>
           <div className='image'>
