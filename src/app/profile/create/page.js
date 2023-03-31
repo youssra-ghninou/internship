@@ -1,25 +1,27 @@
 'use client'
 import SignInButton from '@/components/SignInButton'
 import { useSession } from 'next-auth/react'
-import { toast } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 export default function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const formData = new FormData(e.currentTarget)
-
-    const bio = formData.get('bio')
-
-    const data = await fetch('/api/createprofile', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ bio }),
-    })
-
-    toast.success('Created profile')
+    try {
+      const formData = new FormData(e.currentTarget)
+      const bio = formData.get('bio')
+      await fetch('/api/createprofile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ bio }),
+      })
+      console.log('Created profile')
+      toast.success('Created profile')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const { data: session, status } = useSession()
