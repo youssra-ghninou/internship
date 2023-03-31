@@ -47,37 +47,37 @@ model VerificationToken {
 }
 
 model Offer {
-  id        String     @default(cuid()) @id
-  title     String
-  description  String
-  status    Status @default(ACTIVE)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
-  startDate    DateTime
-  endDate      DateTime
-  companyId    Int
-  applications Application[]
-  company      Company  @relation(fields: [companyId], references: [id])
-  coordinatorId Int?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id            String     @default(cuid()) @id
+  title         String
+  description   String
+  status        Status @default(ACTIVE)
+  author        User?   @relation(fields: [authorId], references: [id])
+  authorId      String?
+  startDate     DateTime
+  endDate       DateTime
+  companyId     String
+  applications  Application[]
+  company       Company  @relation(fields: [companyId], references: [id])
+  coordinatorId String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Application {
-  id           Int      @id @default(autoincrement())
-  studentId    String
-  student      User     @relation(fields: [studentId], references: [id])
-  offerId      String
-  offer        Offer    @relation(fields: [offerId], references: [id])
-  status       String
+  id            String    @id @default(cuid())
+  studentId     String
+  student       User     @relation(fields: [studentId], references: [id])
+  offerId       String
+  offer         Offer    @relation(fields: [offerId], references: [id])
+  status        String
   interviewDate DateTime?
-  agreementUrl String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  agreementUrl  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Company {
-  id          Int     @id @default(autoincrement())
+  id          String    @id @default(cuid())
   name        String
   description String?
   website     String?
@@ -92,7 +92,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  application  Application[]
+  application   Application[]
   profile       Profile?
   offers        Offer[]
   createdAt     DateTime  @default(now()) @map(name: "created_at")

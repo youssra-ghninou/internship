@@ -1,5 +1,5 @@
 import { getSession } from 'next-auth/react'
-import { createProfile, getUser } from '../../../lib/queries'
+import prisma from '../../../lib/prisma'
 
 export default async function handler(req, res) {
   const session = await getSession({ req })
@@ -7,9 +7,13 @@ export default async function handler(req, res) {
     res.redirect(307, '/').end()
   }
   if (req.method === 'POST') {
-    const user = await getUser(session.user.email)
     const { bio } = req.body
-    const profile = await createProfile(bio, user.id)
-    res.status(201).json({ profile })
+    const result = await prisma.profile.create({
+      data: {
+        bio: bio,
+        user: { connect: { email: session?.user?.email } },
+      },
+    })
+    res.json(result)
   } else res.redirect(307, '/').end()
 }
