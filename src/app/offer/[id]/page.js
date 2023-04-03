@@ -1,5 +1,5 @@
 import GoBackButton from '@/components/GoBackButton'
-import AllOffers from '@/components/Offer'
+import SingleOffers from '@/components/SingleOffer'
 import { getOffer, getOffers } from '../../../../lib/queries'
 
 export default async function OfferDetails({ params }) {
@@ -8,7 +8,7 @@ export default async function OfferDetails({ params }) {
   return (
     <div>
       <GoBackButton />
-      <AllOffers offer={offer} />
+      <SingleOffers offer={offer} />
     </div>
   )
 }

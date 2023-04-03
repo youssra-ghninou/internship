@@ -3,9 +3,6 @@ import prisma from '../../../lib/prisma'
 
 export default async function handler(req, res) {
   const session = await getSession({ req })
-  if (!session) {
-    res.redirect(307, '/').end()
-  }
   if (req.method === 'POST') {
     const { bio } = req.body
     const result = await prisma.profile.create({

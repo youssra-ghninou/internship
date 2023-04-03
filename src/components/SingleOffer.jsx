@@ -1,4 +1,4 @@
-export default async function AllOffers({ offer }) {
+export default async function SingleOffers({ offer }) {
   return (
     <div className='flex gap-5 py-2'>
       <div className='offre bg-gray-500'>
