@@ -1,5 +1,4 @@
 'use client'
-import SignInButton from '@/components/SignInButton'
 import { useSession } from 'next-auth/react'
 import toast from 'react-hot-toast'
 
@@ -27,7 +26,7 @@ export default function Create() {
   const { data: session, status } = useSession()
 
   if (status === 'loading') {
-    return <div className='flex flex-col gap-2 py-2'>loading ...</div>
+    return <div className='flex flex-col gap-2 py-2'>loading...</div>
   }
   if (status === 'authenticated') {
     return (
@@ -40,9 +39,4 @@ export default function Create() {
       </div>
     )
   }
-  return (
-    <>
-      <SignInButton />
-    </>
-  )
 }
