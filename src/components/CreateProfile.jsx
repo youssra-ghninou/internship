@@ -75,7 +75,13 @@ export default function Create() {
   const handleAddExperience = () => {
     setExperience((prevExperience) => [
       ...prevExperience,
-      { entreprise: '', poste: '' },
+      {
+        entreprise: '',
+        poste: '',
+        dateDebut: '',
+        dateFin: '',
+        description: '',
+      },
     ])
   }
 
@@ -257,6 +263,43 @@ export default function Create() {
                     value={exp.poste}
                     onChange={(e) =>
                       handleExperienceChange(index, 'poste', e.target.value)
+                    }
+                  />
+                </label>
+                <label>
+                  Description:
+                  <input
+                    className='border border-red-500 bg-gray-100'
+                    type='text'
+                    value={exp.description}
+                    onChange={(e) =>
+                      handleExperienceChange(
+                        index,
+                        'description',
+                        e.target.value,
+                      )
+                    }
+                  />
+                </label>
+                <label>
+                  Date Debut:
+                  <input
+                    className='border border-red-500 bg-gray-100'
+                    type='date'
+                    value={exp.dateDebut}
+                    onChange={(e) =>
+                      handleExperienceChange(index, 'dateDebut', e.target.value)
+                    }
+                  />
+                </label>
+                <label>
+                  Date Fin :
+                  <input
+                    className='border border-red-500 bg-gray-100'
+                    type='date'
+                    value={exp.dateFin}
+                    onChange={(e) =>
+                      handleExperienceChange(index, 'dateFin', e.target.value)
                     }
                   />
                 </label>

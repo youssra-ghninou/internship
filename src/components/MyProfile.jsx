@@ -26,8 +26,8 @@ export default function Profile({ data }) {
             return (
               <div key={educ.id}>
                 <div className='l'>
-                  {educ.etablissement}:{educ.diplome}:
-                  {educ.etablissement.domaine}
+                  {educ.etablissement}:{educ.diplome}:{educ.domaine}:
+                  {educ.dateDebut}:{educ.dateFin}
                 </div>
               </div>
             )

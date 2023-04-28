@@ -145,7 +145,6 @@ model Experience {
   id            String    @id @default(cuid())
   entreprise    String
   poste         String
-  lieu          String?
   dateDebut     String?
   dateFin       String?
   description   String?
@@ -156,7 +155,6 @@ model Experience {
 model Competence {
   id            String    @id @default(cuid())
   nom           String
-  niveau        String?
   profileId     String?
   profile       Profile?  @relation(fields: [profileId], references: [profileId])
 }
