@@ -14,7 +14,6 @@ export default async function handler(req, res) {
       experience,
       competences,
     } = req.body
-    console.log(req.body)
     const result = await prisma.profile.create({
       data: {
         nom: session?.user?.name,
@@ -37,7 +36,6 @@ export default async function handler(req, res) {
         },
       },
     })
-    console.log(result)
     res.json(result)
   } else res.redirect(307, '/').end()
 }

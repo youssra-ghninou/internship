@@ -15,8 +15,24 @@ export default function Profile({ data }) {
         </div>
         <div className='name'>{data.name}</div>
         <div className='email'>{data.email}</div>
-        <div className='profile_bio'>{data.profile.bio}</div>
-        <div className='adresse'>{data.adresse}</div>
+        <div className='adresse'>{data.profile.adresse}</div>
+        <div className='titre'>{data.profile.titre}</div>
+        <div className='titre'>{data.profile.adresse}</div>
+        <div className='titre'>{data.profile.telephone}</div>
+        <div className='titre'>{data.profile.siteWeb}</div>
+        <div className='titre'>{data.profile.resume}</div>
+        <div className='titre'>
+          {data.profile.education.map((educ) => {
+            return (
+              <div key={educ.id}>
+                <div className='l'>
+                  {educ.etablissement}:{educ.diplome}:
+                  {educ.etablissement.domaine}
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

@@ -135,8 +135,8 @@ model Education {
   etablissement String
   diplome       String
   domaine       String?
-  dateDebut     DateTime?
-  dateFin       DateTime?
+  dateDebut     String?
+  dateFin       String?
   profileId     String?
   profile       Profile?  @relation(fields: [profileId], references: [profileId])
 }
@@ -146,8 +146,8 @@ model Experience {
   entreprise    String
   poste         String
   lieu          String?
-  dateDebut     DateTime?
-  dateFin       DateTime?
+  dateDebut     String?
+  dateFin       String?
   description   String?
   profileId     String?
   profile       Profile?  @relation(fields: [profileId], references: [profileId])

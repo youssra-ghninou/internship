@@ -62,7 +62,13 @@ export default function Create() {
   const handleAddEducation = () => {
     setEducation((prevEducation) => [
       ...prevEducation,
-      { etablissement: '', diplome: '' },
+      {
+        etablissement: '',
+        diplome: '',
+        domaine: '',
+        dateDebut: '',
+        dateFin: '',
+      },
     ])
   }
 
@@ -184,6 +190,39 @@ export default function Create() {
                     value={edu.diplome}
                     onChange={(e) =>
                       handleEducationChange(index, 'diplome', e.target.value)
+                    }
+                  />
+                </label>
+                <label>
+                  Domaine:
+                  <input
+                    className='border border-red-500 bg-gray-100'
+                    type='text'
+                    value={edu.domaine}
+                    onChange={(e) =>
+                      handleEducationChange(index, 'domaine', e.target.value)
+                    }
+                  />
+                </label>
+                <label>
+                  Date Debut:
+                  <input
+                    className='border border-red-500 bg-gray-100'
+                    type='date'
+                    value={edu.dateDebut}
+                    onChange={(e) =>
+                      handleEducationChange(index, 'dateDebut', e.target.value)
+                    }
+                  />
+                </label>
+                <label>
+                  Date Fin :
+                  <input
+                    className='border border-red-500 bg-gray-100'
+                    type='date'
+                    value={edu.dateFin}
+                    onChange={(e) =>
+                      handleEducationChange(index, 'dateFin', e.target.value)
                     }
                   />
                 </label>
