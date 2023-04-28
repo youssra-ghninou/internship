@@ -115,7 +115,49 @@ enum Status {
   ARCHIVED
 }
 model Profile {
-  id     String    @id @default(cuid())
-  bio    String
-  user   User   @relation(fields: [id], references: [id])
+  profileId     String    @id @default(cuid())
+  user   User   @relation(fields: [profileId], references: [id])
+  nom           String
+  prenom        String
+  titre         String?
+  adresse       String?
+  email         String
+  telephone     String?
+  siteWeb       String?
+  resume        String?
+  education     Education[]
+  experience    Experience[]
+  competences   Competence[]
 }
+
+model Education {
+  id            String    @id @default(cuid())
+  etablissement String
+  diplome       String
+  domaine       String?
+  dateDebut     DateTime?
+  dateFin       DateTime?
+  profileId     String?
+  profile       Profile?  @relation(fields: [profileId], references: [profileId])
+}
+
+model Experience {
+  id            String    @id @default(cuid())
+  entreprise    String
+  poste         String
+  lieu          String?
+  dateDebut     DateTime?
+  dateFin       DateTime?
+  description   String?
+  profileId     String?
+  profile       Profile?  @relation(fields: [profileId], references: [profileId])
+}
+
+model Competence {
+  id            String    @id @default(cuid())
+  nom           String
+  niveau        String?
+  profileId     String?
+  profile       Profile?  @relation(fields: [profileId], references: [profileId])
+}
+

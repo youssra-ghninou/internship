@@ -4,13 +4,40 @@ import prisma from '../../../lib/prisma'
 export default async function handler(req, res) {
   const session = await getSession({ req })
   if (req.method === 'POST') {
-    const { bio } = req.body
+    const {
+      titre,
+      adresse,
+      telephone,
+      siteWeb,
+      resume,
+      education,
+      experience,
+      competences,
+    } = req.body
+    console.log(req.body)
     const result = await prisma.profile.create({
       data: {
-        bio: bio,
+        nom: session?.user?.name,
+        prenom: session?.user?.name,
+        email: session?.user?.email,
+        titre: titre,
+        adresse: adresse,
+        telephone: telephone,
+        siteWeb: siteWeb,
+        resume: resume,
         user: { connect: { email: session?.user?.email } },
+        education: {
+          create: education,
+        },
+        experience: {
+          create: experience,
+        },
+        competences: {
+          create: competences,
+        },
       },
     })
+    console.log(result)
     res.json(result)
   } else res.redirect(307, '/').end()
 }

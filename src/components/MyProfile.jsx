@@ -16,6 +16,7 @@ export default function Profile({ data }) {
         <div className='name'>{data.name}</div>
         <div className='email'>{data.email}</div>
         <div className='profile_bio'>{data.profile.bio}</div>
+        <div className='adresse'>{data.adresse}</div>
       </div>
     </div>
   )
