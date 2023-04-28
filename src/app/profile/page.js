@@ -1,5 +1,4 @@
 import Create from '@/components/CreateProfile'
-import GoBackButton from '@/components/GoBackButton'
 import MyProfile from '@/components/MyProfile'
 import SignInButton from '@/components/SignInButton'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
@@ -14,7 +13,6 @@ export default async function Profile() {
     if (user.profile) {
       return (
         <div className='flex flex-col gap-2 py-2'>
-          <GoBackButton />
           <MyProfile data={user} />
         </div>
       )
