@@ -8,19 +8,18 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 model Account {
   id                 String  @id @default(cuid())
   userId             String
   type               String
   provider           String
   providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
+  refresh_token      String? @db.Text
+  access_token       String? @db.Text
   expires_at         Int?
   token_type         String?
   scope              String?
-  id_token           String?  @db.Text
+  id_token           String? @db.Text
   session_state      String?
   oauth_token_secret String?
   oauth_token        String?
@@ -47,37 +46,37 @@ model VerificationToken {
 }
 
 model Offer {
-  id            String     @default(cuid()) @id
+  id            String        @id @default(cuid())
   title         String
   description   String
-  status        Status @default(ACTIVE)
-  author        User?   @relation(fields: [authorId], references: [id])
+  status        Status        @default(ACTIVE)
+  author        User?         @relation(fields: [authorId], references: [id])
   authorId      String?
   startDate     DateTime
   endDate       DateTime
   companyId     String
   applications  Application[]
-  company       Company  @relation(fields: [companyId], references: [id])
+  company       Company       @relation(fields: [companyId], references: [id])
   coordinatorId String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 model Application {
   id            String    @id @default(cuid())
   studentId     String
-  student       User     @relation(fields: [studentId], references: [id])
+  student       User      @relation(fields: [studentId], references: [id])
   offerId       String
-  offer         Offer    @relation(fields: [offerId], references: [id])
+  offer         Offer     @relation(fields: [offerId], references: [id])
   status        String
   interviewDate DateTime?
   agreementUrl  String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model Company {
-  id          String    @id @default(cuid())
+  id          String   @id @default(cuid())
   name        String
   description String?
   website     String?
@@ -85,20 +84,22 @@ model Company {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
 model User {
-  id            String    @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  role          Role      @default(ENIMISTE)
-  email         String?   @unique
+  role          Role          @default(ENIMISTE)
+  email         String?       @unique
   emailVerified DateTime?
   image         String?
   application   Application[]
   profile       Profile?
   offers        Offer[]
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  createdAt     DateTime      @default(now()) @map(name: "created_at")
+  updatedAt     DateTime      @updatedAt @map(name: "updated_at")
   accounts      Account[]
   sessions      Session[]
+
   @@map(name: "users")
 }
 
@@ -114,48 +115,48 @@ enum Status {
   DRAFT
   ARCHIVED
 }
+
 model Profile {
-  profileId     String    @id @default(cuid())
-  user   User   @relation(fields: [profileId], references: [id])
-  nom           String
-  prenom        String
-  titre         String?
-  adresse       String?
-  email         String
-  telephone     String?
-  siteWeb       String?
-  resume        String?
-  education     Education[]
-  experience    Experience[]
-  competences   Competence[]
+  profileId   String       @id @default(cuid())
+  user        User         @relation(fields: [profileId], references: [id])
+  nom         String
+  prenom      String
+  titre       String?
+  adresse     String?
+  email       String
+  telephone   String?
+  siteWeb     String?
+  resume      String?
+  education   Education[]
+  experience  Experience[]
+  competences Competence[]
 }
 
 model Education {
-  id            String    @id @default(cuid())
+  id            String   @id @default(cuid())
   etablissement String
   diplome       String
   domaine       String?
   dateDebut     String?
   dateFin       String?
   profileId     String?
-  profile       Profile?  @relation(fields: [profileId], references: [profileId])
+  profile       Profile? @relation(fields: [profileId], references: [profileId])
 }
 
 model Experience {
-  id            String    @id @default(cuid())
-  entreprise    String
-  poste         String
-  dateDebut     String?
-  dateFin       String?
-  description   String?
-  profileId     String?
-  profile       Profile?  @relation(fields: [profileId], references: [profileId])
+  id          String   @id @default(cuid())
+  entreprise  String
+  poste       String
+  dateDebut   String?
+  dateFin     String?
+  description String?
+  profileId   String?
+  profile     Profile? @relation(fields: [profileId], references: [profileId])
 }
 
 model Competence {
-  id            String    @id @default(cuid())
-  nom           String
-  profileId     String?
-  profile       Profile?  @relation(fields: [profileId], references: [profileId])
+  id        String   @id @default(cuid())
+  nom       String
+  profileId String?
+  profile   Profile? @relation(fields: [profileId], references: [profileId])
 }
-
