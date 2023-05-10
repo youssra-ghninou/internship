@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useState, useTransition } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 
-export default function Create() {
+export default function CreateProfile() {
   const router = useRouter()
   const [titre, setTitre] = useState('')
   const [adresse, setAdresse] = useState('')
