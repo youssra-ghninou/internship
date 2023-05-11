@@ -1,13 +1,14 @@
 import SingleOffers from '@/components/offer/SingleOffer'
+import GenerateStaticParamsProvider from '@/providers/generateStaticParamsProvider'
 import { getOffer, getOffers } from '../../../../../lib/queries'
 
 export default async function OfferDetails({ params }) {
   const { id } = params
   const offer = await getOffer(id)
   return (
-    <div>
+    <GenerateStaticParamsProvider>
       <SingleOffers offer={offer} />
-    </div>
+    </GenerateStaticParamsProvider>
   )
 }
 
