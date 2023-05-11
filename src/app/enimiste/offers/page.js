@@ -10,11 +10,7 @@ export default async function Offers() {
     const user = await getUser(session.user.email)
 
     if (user.role === 'ENIMISTE') {
-      return (
-        <div className='flex h-screen items-center justify-center'>
-          <AllOffers />
-        </div>
-      )
+      return <AllOffers />
     } else if (user.role === 'COMPANY') {
       return <div className=''>COMPANY ROLE</div>
     } else if (user.role === 'COORDIBATOR') {

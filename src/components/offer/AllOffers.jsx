@@ -3,9 +3,8 @@ import { getOffers } from '../../../lib/queries'
 
 export default async function AllOffers() {
   const offers = await getOffers()
-  console.log(offers)
   return (
-    <div className='flex gap-5 py-2'>
+    <div className='flex flex-col gap-5 py-2'>
       {offers.map(
         ({
           id,
@@ -17,17 +16,33 @@ export default async function AllOffers() {
           author,
           company,
         }) => (
-          <div key={id} className='offre bg-gray-500'>
-            <div className='title'>{title}</div>
-            <div className='content'>{description}</div>
-            <div className='flex justify-between'>
-              <div className='author-name'>{author.name}</div>
-              <div className='author-name'>{company.name}</div>
-              <div className='author-name'>{status}</div>
-              <div className='author-name'>{JSON.stringify(startDate)}</div>
-              <div className='author-name'>{JSON.stringify(endDate)}</div>
+          <div key={id} className='rounded-lg bg-white p-6 shadow-md'>
+            <div className='text-2xl font-bold'>{title}</div>
+            <div className='text-sm text-gray-500'>{description}</div>
+            <div className='mt-4 flex justify-between'>
+              <div className='text-sm font-medium text-gray-500'>
+                {author ? author.name : 'ENIM'}
+              </div>
+              <div className='text-sm font-medium text-gray-500'>
+                {company.name}
+              </div>
+              <div className='text-sm font-medium text-gray-500'>{status}</div>
+              <div className='text-sm font-medium text-gray-500'>
+                {new Date(startDate).toLocaleDateString(undefined, {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                })}
+              </div>
+              <div className='text-sm font-medium text-gray-500'>
+                {new Date(endDate).toLocaleDateString(undefined, {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                })}
+              </div>
               <Link
-                className='rounded-md bg-black px-2 text-red-500'
+                className='rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700'
                 href={'enimiste/offers/' + id}
               >
                 Details
