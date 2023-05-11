@@ -80,6 +80,7 @@ model Company {
   name        String
   description String?
   website     String?
+  image       String?
   offers      Offer[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
