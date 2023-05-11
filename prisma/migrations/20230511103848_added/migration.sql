@@ -1,34 +1,45 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Post` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
-
-*/
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('ENIMISTE', 'COMPANY', 'COORDINATOR', 'ADMIN');
 
 -- CreateEnum
 CREATE TYPE "Status" AS ENUM ('ACTIVE', 'DRAFT', 'ARCHIVED');
 
--- DropForeignKey
-ALTER TABLE "Account" DROP CONSTRAINT "Account_userId_fkey";
+-- CreateTable
+CREATE TABLE "Account" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
+    "provider" TEXT NOT NULL,
+    "providerAccountId" TEXT NOT NULL,
+    "refresh_token" TEXT,
+    "access_token" TEXT,
+    "expires_at" INTEGER,
+    "token_type" TEXT,
+    "scope" TEXT,
+    "id_token" TEXT,
+    "session_state" TEXT,
+    "oauth_token_secret" TEXT,
+    "oauth_token" TEXT,
 
--- DropForeignKey
-ALTER TABLE "Post" DROP CONSTRAINT "Post_authorId_fkey";
+    CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
+);
 
--- DropForeignKey
-ALTER TABLE "Session" DROP CONSTRAINT "Session_userId_fkey";
+-- CreateTable
+CREATE TABLE "Session" (
+    "id" TEXT NOT NULL,
+    "sessionToken" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "expires" TIMESTAMP(3) NOT NULL,
 
--- AlterTable
-ALTER TABLE "Account" ADD COLUMN     "oauth_token" TEXT,
-ADD COLUMN     "oauth_token_secret" TEXT;
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
+);
 
--- DropTable
-DROP TABLE "Post";
-
--- DropTable
-DROP TABLE "User";
+-- CreateTable
+CREATE TABLE "VerificationToken" (
+    "identifier" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "expires" TIMESTAMP(3) NOT NULL
+);
 
 -- CreateTable
 CREATE TABLE "Offer" (
@@ -79,6 +90,7 @@ CREATE TABLE "users" (
     "name" TEXT,
     "role" "Role" NOT NULL DEFAULT 'ENIMISTE',
     "email" TEXT,
+    "password" TEXT,
     "emailVerified" TIMESTAMP(3),
     "image" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -120,7 +132,6 @@ CREATE TABLE "Experience" (
     "id" TEXT NOT NULL,
     "entreprise" TEXT NOT NULL,
     "poste" TEXT NOT NULL,
-    "lieu" TEXT,
     "dateDebut" TEXT,
     "dateFin" TEXT,
     "description" TEXT,
@@ -133,11 +144,22 @@ CREATE TABLE "Experience" (
 CREATE TABLE "Competence" (
     "id" TEXT NOT NULL,
     "nom" TEXT NOT NULL,
-    "niveau" TEXT,
     "profileId" TEXT,
 
     CONSTRAINT "Competence_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Session_sessionToken_key" ON "Session"("sessionToken");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationToken"("identifier", "token");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");

@@ -90,6 +90,7 @@ model User {
   name          String?
   role          Role          @default(ENIMISTE)
   email         String?       @unique
+  password      String?
   emailVerified DateTime?
   image         String?
   application   Application[]
