@@ -43,7 +43,7 @@ export default async function AllOffers() {
               </div>
               <Link
                 className='rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700'
-                href={'enimiste/offers/' + id}
+                href={'/offers/' + id}
               >
                 Details
               </Link>
