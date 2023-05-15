@@ -3,10 +3,10 @@ import MessageIcon from '../notification/messageIcon'
 
 const Side = ({ eventnotif }) => {
   return (
-    <div className=' flex h-[900px] w-[85px] flex-col items-center bg-[#22506C]  pt-[50px] text-xs font-normal'>
+    <div className='fixed flex h-screen w-fit flex-col items-center justify-center gap-10 bg-[#22506C] px-3 text-xs font-normal'>
       <div className='flex flex-row justify-between'>
         <p className='h-[55px] w-[7px] rounded-r-lg bg-[#FDDC30] '></p>
-        <button className='font-popping flex flex-col items-center pb-[60px]  text-white '>
+        <button className='font-popping flex flex-col items-center text-white '>
           <Image
             width={20}
             height={20}
@@ -18,7 +18,7 @@ const Side = ({ eventnotif }) => {
         </button>
         <p className='h-[55px] w-[7px] rounded-l-lg bg-[#FDDC30] '></p>
       </div>
-      <button className='font-popping flex flex-col items-center pb-[60px]  text-white '>
+      <button className='font-popping flex flex-col items-center text-white '>
         <Image
           width={20}
           height={20}
@@ -28,11 +28,11 @@ const Side = ({ eventnotif }) => {
         />
         Mes Offres
       </button>
-      <button className='font-popping flex flex-col items-center pb-[60px]    '>
-        <MessageIcon lien={'/calendrier.png'} notificationCount={eventnotif} />
-        <p className='pt-1 text-white'>Événemets À Venir</p>
+      <button className='font-popping flex flex-col items-center   '>
+        <MessageIcon lien={'/calendrier.png'} notificationCount={5} />
+        <p className='pt-1 text-white'>Événements À Venir</p>
       </button>
-      <button className='font-popping relative flex flex-col items-center pb-[60px]  text-white '>
+      <button className='font-popping flex flex-col items-center text-white '>
         <Image
           width={20}
           height={20}
@@ -42,10 +42,10 @@ const Side = ({ eventnotif }) => {
         />
         Paramètre
       </button>
-      <button className=' absolute bottom-1 w-[55px] rounded-md border-[1px] border-solid border-black bg-white font-medium'>
+      <button className='w-fit rounded-md border-[1px] border-solid border-black bg-white px-2 font-medium'>
         Aide
       </button>
-      <button className='font-popping flex flex-col items-center pt-[200px] text-white '>
+      <button className='font-popping flex flex-col items-center text-white '>
         <Image
           width={20}
           height={20}

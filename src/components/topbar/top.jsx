@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import MessageIcon from '../notification/messageIcon'
+import Link from 'next/link'
 
-const Top = ({ messagenotif, valisenotif, rappelnotif, lien, Nom, Prenom }) => {
+const Top = ({ lien, Nom }) => {
   return (
-    <div className='flex h-[58px] flex-row bg-[#22506C] '>
-      <div className='ml-5 flex flex-row items-center'>
+    <div className='fixed top-0 left-0 z-50 flex h-fit w-screen flex-row justify-between bg-[#22506C] px-3 py-2'>
+      <div className='flex flex-row items-center gap-2'>
         <Image
           width={25}
           height={25}
@@ -12,9 +12,9 @@ const Top = ({ messagenotif, valisenotif, rappelnotif, lien, Nom, Prenom }) => {
           alt={'logo'}
           className='rounded-full'
         />
-        <div className='ml-2 text-[16px] text-white'>e-internship</div>
+        <div className='text-[16px] text-white'>e-internship</div>
       </div>
-      <div className='my-auto pl-[150px] '>
+      <div className='my-auto'>
         <form className='max-w-sm px-4 '>
           <div className='relative'>
             <svg
@@ -39,35 +39,22 @@ const Top = ({ messagenotif, valisenotif, rappelnotif, lien, Nom, Prenom }) => {
           </div>
         </form>
       </div>
-      <div className='my-auto flex gap-5 pl-[240px] '>
-        <button>
-          <MessageIcon lien={'/message.png'} notificationCount={messagenotif} />
-        </button>
-        <button>
-          <MessageIcon lien={'/rappel.png'} notificationCount={rappelnotif} />
-        </button>
-        <button>
-          <MessageIcon
-            lien={'/icons-valise.png'}
-            notificationCount={valisenotif}
-          />
-        </button>
-      </div>
-      <div className='flex flex-row pl-[120px] '>
+      <div className='flex flex-row items-center gap-3'>
         <Image
           width={50}
+          className='rounded-full'
           height={50}
           src={lien}
           alt={'ProfilePic'}
-          className='my-auto'
         />
-        <div className='my-auto flex flex-col content-center pl-[15px] text-[10px] '>
-          <div className=' text-[12px] font-medium text-white '>
-            {Nom} {Prenom}
-          </div>
-          <button className='h-[20px] w-[130px] rounded-full bg-white font-medium '>
-            MODIFIER MON PROFILE
-          </button>
+        <div className='flex flex-col content-center text-[10px]'>
+          <div className='text-[12px] font-medium text-white '>{Nom}</div>
+          <Link
+            href='/enimiste/profile'
+            className='rounded-xl bg-white px-2 py-1 text-center font-medium '
+          >
+            PROFILE
+          </Link>
         </div>
       </div>
     </div>
