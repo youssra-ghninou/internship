@@ -10,7 +10,7 @@ export default async function Enimiste() {
         </Link>
         <SignOutButton />
       </div>
-      <Link className='btn-active btn' href='/enimiste/offers'>
+      <Link className='btn-active btn' href='offers'>
         Voir les offres
       </Link>
     </div>
