@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import SignOutButton from '../common/SignOutButton'
 import MessageIcon from '../notification/messageIcon'
 
 const Side = ({ eventnotif }) => {
@@ -18,7 +20,7 @@ const Side = ({ eventnotif }) => {
         </button>
         <p className='h-[55px] w-[7px] rounded-l-lg bg-[#FDDC30] '></p>
       </div>
-      <button className='font-popping flex flex-col items-center text-white '>
+      <div className='flex flex-col items-center justify-center'>
         <Image
           width={20}
           height={20}
@@ -26,8 +28,13 @@ const Side = ({ eventnotif }) => {
           alt={'offres'}
           className='pb-1'
         />
-        Mes Offres
-      </button>
+        <Link
+          className='font-popping flex flex-col items-center text-center text-white '
+          href='offers'
+        >
+          Mes offres
+        </Link>
+      </div>
       <button className='font-popping flex flex-col items-center   '>
         <MessageIcon lien={'/calendrier.png'} notificationCount={5} />
         <p className='pt-1 text-white'>Événements À Venir</p>
@@ -45,16 +52,7 @@ const Side = ({ eventnotif }) => {
       <button className='w-fit rounded-md border-[1px] border-solid border-black bg-white px-2 font-medium'>
         Aide
       </button>
-      <button className='font-popping flex flex-col items-center text-white '>
-        <Image
-          width={20}
-          height={20}
-          src={'/deconnexion.png'}
-          alt={'deconnexion'}
-          className='pb-1'
-        />
-        Déconnexion
-      </button>
+      <SignOutButton />
     </div>
   )
 }

@@ -1,24 +1,13 @@
-import Candidature from '../../candidatures/candidature'
-import Evenement from '../../evenements/evenement'
-import Button from '../../interfaces/interfaceBord/button'
-import Recommendation from '../../recommendations/recommendation'
-import Side from '../../sideBar/side'
-import Conteneur from '../../suggestions/conteneur'
-import Top from '../../topbar/top'
+import Button from '@/components/candidatures/button'
+import Candidature from '@/components/candidatures/candidature'
+import Evenement from '@/components/evenements/evenement'
+import Recommendation from '@/components/recommendations/recommendation'
+import Conteneur from '@/components/suggestions/conteneur'
 
 const InterfaceBord = () => {
   return (
     <div className='bg-[#ecebeb]'>
-      <Top
-        messagenotif={'3'}
-        valisenotif={'8'}
-        rappelnotif={'8'}
-        lien={'/ProfilePic.png'}
-        Nom={'AIMADE'}
-        Prenom={'ANOUAR'}
-      />
       <div className='flex flex-row gap-4'>
-        <Side eventnotif={'3'} />
         <div className='flex flex-col pt-[40px] '>
           <div>
             <div className=' flex flex-row items-end justify-between pb-[10px] '>
