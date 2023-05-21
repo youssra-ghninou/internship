@@ -1,20 +1,23 @@
 import SignInButton from '@/components/common/SignInButton'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation'
-import { getUser } from '../../../lib/queries'
+import Link from 'next/link'
 
-export default async function Coordinator() {
+export default async function Company() {
   const session = await getServerSession(authOptions)
   if (session) {
     const user = await getUser(session.user.email)
-    if (user.role === 'COORDINATOR') {
-      return (
-        <div className='flex h-screen items-center justify-center'>
-          COORDINATOR dashboard
-        </div>
-      )
-    } else return redirect('/' + user.role.toLowerCase())
+    return (
+      <div className='flex h-screen items-center justify-center'>
+        <Link
+          className='rounded-full bg-red-500 p-3'
+          href={'/company/createoffer'}
+        >
+          Creer une offre
+        </Link>
+      </div>
+    )
   }
   return (
     <div className='flex h-screen items-center justify-center'>

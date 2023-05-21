@@ -2,45 +2,45 @@ import Image from 'next/image'
 import Button from './button'
 import Remuneration from './remuneration'
 
-const Candidature = () => {
-  const candidatureData = [
-    {
-      id: '1',
-      lien: '/techmints.png',
-      titre: 'Designer De Produit',
-      nom: 'Techmint, SurSite',
-      location: 'Rabat, Maroc',
-      prix: '900 DH',
-      status: 'Rejeté',
-    },
-    {
-      id: '2',
-      lien: '/unacademy.png',
-      titre: 'Senior Product Designer',
-      nom: 'Unacademy, Travail À Domicile',
-      location: 'Casablanca, Maroc',
-      prix: 'Non Rémunéré',
-      status: 'En Cours',
-    },
-    {
-      id: '3',
-      lien: '/udemy.png',
-      titre: 'Senior Product Designer',
-      nom: 'Udemy, Travail À Domicile',
-      location: 'Casablanca, Maroc',
-      prix: 'Non Rémunéré',
-      status: 'Sélectionné',
-    },
-    {
-      id: '4',
-      lien: '/techmints.png',
-      titre: 'Designer De Produit',
-      nom: 'Techmint, SurSite',
-      location: 'Rabat, Maroc',
-      prix: '900 DH',
-      status: 'Rejeté',
-    },
-  ]
+const Candidature = (candidatureData) => {
+  // const candidatureData = [
+  //   {
+  //     id: '1',
+  //     lien: '/techmints.png',
+  //     titre: 'Designer De Produit',
+  //     nom: 'Techmint, SurSite',
+  //     location: 'Rabat, Maroc',
+  //     prix: '900 DH',
+  //     status: 'Rejeté',
+  //   },
+  //   {
+  //     id: '2',
+  //     lien: '/unacademy.png',
+  //     titre: 'Senior Product Designer',
+  //     nom: 'Unacademy, Travail À Domicile',
+  //     location: 'Casablanca, Maroc',
+  //     prix: 'Non Rémunéré',
+  //     status: 'En Cours',
+  //   },
+  //   {
+  //     id: '3',
+  //     lien: '/udemy.png',
+  //     titre: 'Senior Product Designer',
+  //     nom: 'Udemy, Travail À Domicile',
+  //     location: 'Casablanca, Maroc',
+  //     prix: 'Non Rémunéré',
+  //     status: 'Sélectionné',
+  //   },
+  //   {
+  //     id: '4',
+  //     lien: '/techmints.png',
+  //     titre: 'Designer De Produit',
+  //     nom: 'Techmint, SurSite',
+  //     location: 'Rabat, Maroc',
+  //     prix: '900 DH',
+  //     status: 'Rejeté',
+  //   },
+  // ]
   return (
     <div className='h-[370px] w-[879px] rounded-lg bg-white p-4 pt-7 shadow-xl'>
       <div className='flex items-center justify-between px-[42.75px] pb-[17.49px]'>
