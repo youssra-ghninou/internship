@@ -11,7 +11,7 @@ export default async function Home() {
     return redirect('/' + user.role.toLowerCase())
   }
   return (
-    <div className='flex h-screen items-center justify-center'>
+    <div className='flex items-center justify-center'>
       <SignInButton />
     </div>
   )
