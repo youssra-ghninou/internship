@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import SignOutButton from '../common/SignOutButton'
-import MessageIcon from '../notification/messageIcon'
 
 const Side = ({ eventnotif }) => {
   return (
-    <div className='fixed flex h-screen w-fit flex-col items-center justify-center gap-10 bg-[#22506C] px-3 text-xs font-normal'>
+    <div className='sticky top-5 bottom-0 left-0 flex h-screen w-fit flex-col items-center justify-center gap-10 bg-[#22506C] text-xs font-normal'>
       <div className='flex flex-row justify-between'>
         <p className='h-[55px] w-[7px] rounded-r-lg bg-[#FDDC30] '></p>
         <button className='font-popping flex flex-col items-center text-white '>
@@ -35,10 +34,6 @@ const Side = ({ eventnotif }) => {
           Mes offres
         </Link>
       </div>
-      <button className='font-popping flex flex-col items-center   '>
-        <MessageIcon lien={'/calendrier.png'} notificationCount={5} />
-        <p className='pt-1 text-white'>Événements À Venir</p>
-      </button>
       <button className='font-popping flex flex-col items-center text-white '>
         <Image
           width={20}
@@ -48,9 +43,6 @@ const Side = ({ eventnotif }) => {
           className='pb-1'
         />
         Paramètre
-      </button>
-      <button className='w-fit rounded-md border-[1px] border-solid border-black bg-white px-2 font-medium'>
-        Aide
       </button>
       <SignOutButton />
     </div>

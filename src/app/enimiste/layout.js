@@ -10,15 +10,15 @@ export default async function EnimisteLayout({ children }) {
   const session = await getServerSession(authOptions)
   if (session) {
     const user = await getUser(session.user.email)
-    console.log(user)
     if (user.role === 'ENIMISTE') {
       return (
         <div>
           <Top Nom={user.name} lien={user.image} />
 
-          <Side />
-
-          {children}
+          <div className='flex w-screen'>
+            <Side />
+            <div className='w-full px-5 py-5'>{children}</div>
+          </div>
         </div>
       )
     } else return redirect('/' + user.role.toLowerCase())

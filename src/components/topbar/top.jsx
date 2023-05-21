@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Top = ({ lien, Nom }) => {
   return (
-    <div className='fixed top-0 left-0 z-50 flex h-fit w-screen flex-row justify-between bg-[#22506C] px-3 py-2'>
+    <div className='sticky top-0 left-0 z-50 flex h-fit flex-row justify-between bg-[#22506C] px-3 py-2'>
       <div className='flex flex-row items-center gap-2'>
         <Image
           width={25}
