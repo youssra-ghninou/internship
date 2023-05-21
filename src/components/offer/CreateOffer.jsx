@@ -14,10 +14,6 @@ export default function CreateOfferForm() {
     companyId: '',
   })
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -83,7 +79,7 @@ export default function CreateOfferForm() {
       <label>
         Start Date:
         <input
-          type='datetime-local'
+          type='date'
           name='startDate'
           value={offerData.startDate}
           onChange={handleChange}
@@ -93,7 +89,7 @@ export default function CreateOfferForm() {
       <label>
         End Date:
         <input
-          type='datetime-local'
+          type='date'
           name='endDate'
           value={offerData.endDate}
           onChange={handleChange}
@@ -110,12 +106,7 @@ export default function CreateOfferForm() {
           required
         />
       </label>
-      {isLoading ? (
-        <button disabled>Creating Offer...</button>
-      ) : (
-        <button type='submit'>Create Offer</button>
-      )}
-      {isError && <p>Error: {errorMessage}</p>}
+      <button type='submit'>Create Offer</button>
     </form>
   )
 }
