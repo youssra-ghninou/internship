@@ -1,8 +1,8 @@
 import SignInButton from '@/components/common/SignInButton'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
-import { getUser } from '../../../lib/queries'
 
 export default async function EnimisteLayout({ children }) {
   const session = await getServerSession(authOptions)

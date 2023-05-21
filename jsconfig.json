@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@@/*": ["./lib/*"],
+      "@@@/*": ["./pages/api/auth/*"],
+      "@@@@/*": ["./providers/*"]
     }
   }
 }

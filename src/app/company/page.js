@@ -1,8 +1,8 @@
 import SignInButton from '@/components/common/SignInButton'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
-import { getUser } from '../../../lib/queries'
 
 export default async function Company() {
   const session = await getServerSession(authOptions)

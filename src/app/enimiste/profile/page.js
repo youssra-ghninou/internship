@@ -2,8 +2,8 @@ import SignInButton from '@/components/common/SignInButton'
 import CreateProfile from '@/components/profile/CreateProfile'
 import MyProfile from '@/components/profile/MyProfile'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth/next'
-import { getUser } from '../../../../lib/queries'
 
 export default async function Profile() {
   const session = await getServerSession(authOptions)
