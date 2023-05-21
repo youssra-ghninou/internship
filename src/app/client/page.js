@@ -4,7 +4,7 @@ import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth/next'
 import { redirect } from 'next/navigation'
 
-export default async function Home() {
+export default async function Client() {
   const session = await getServerSession(authOptions)
   if (session) {
     const user = await getUser(session.user.email)
