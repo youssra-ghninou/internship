@@ -5,7 +5,7 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth'
 
-export default async function ClientLayout({ children }) {
+export default async function Template({ children }) {
   const session = await getServerSession(authOptions)
   if (session) {
     const user = await getUser(session.user.email)
