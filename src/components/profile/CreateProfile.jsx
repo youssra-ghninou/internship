@@ -20,38 +20,40 @@ export default function CreateProfile() {
     e.preventDefault()
     try {
       if (
-        titre != '' &&
-        adresse != '' &&
-        telephone != '' &&
-        siteWeb != '' &&
-        resume != ''
+        titre !== '' &&
+        adresse !== '' &&
+        telephone !== '' &&
+        siteWeb !== '' &&
+        resume !== ''
       ) {
-        await fetch(
-          '/api/createprofile',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              titre,
-              adresse,
-              telephone,
-              siteWeb,
-              resume,
-              education,
-              experience,
-              competences,
-            }),
+        toast.loading('Veullez patienter ...')
+        const response = await fetch('/api/createprofile', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-          toast.loading('Waiting...'),
-        )
-        toast.success('Successfully created!')
+          body: JSON.stringify({
+            titre,
+            adresse,
+            telephone,
+            siteWeb,
+            resume,
+            education,
+            experience,
+            competences,
+          }),
+        })
+        toast.dismiss()
+        if (response.ok) {
+          toast.success('Profile cree!')
+        } else {
+          toast.error('There was an error!')
+        }
       } else {
-        toast.error('This field can not be blank')
+        toast.error('This field cannot be blank')
       }
     } catch (error) {
-      toast.error('There was an error!' + error)
+      toast.error('There was an error: ' + error)
     }
     startTransition(() => {
       router.refresh()
