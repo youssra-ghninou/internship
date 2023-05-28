@@ -119,131 +119,135 @@ export default function CreateProfile() {
   if (status === 'authenticated') {
     return (
       <>
-        <form className='gap-5 p-2' onSubmit={handleSubmit}>
-          <h2 className='text-xl font-bold'>Personal DATA</h2>
-          <div className='flex flex-wrap items-center justify-between gap-5'>
+        <form className='gap-10 p-2' onSubmit={handleSubmit}>
+          <div className=' text-[28px] font-semibold '>Créer votre profil </div>
+          <div className='flex flex-wrap items-center gap-3'>
             <label>
-              Titre:
               <input
-                className='border border-red-500 bg-gray-100'
+                className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
                 type='text'
                 value={titre}
                 onChange={(e) => setTitre(e.target.value)}
                 disabled={isPending}
+                placeholder='Titre'
               />
             </label>
             <label>
-              Adresse:
               <input
-                className='border border-red-500 bg-gray-100'
+                className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
                 type='text'
                 value={adresse}
                 onChange={(e) => setAdresse(e.target.value)}
+                placeholder='Adresse:'
               />
             </label>
             <label>
-              Téléphone:
               <input
-                className='border border-red-500 bg-gray-100'
+                className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
                 type='tel'
                 value={telephone}
                 onChange={(e) => setTelephone(e.target.value)}
+                placeholder='Téléphone'
               />
             </label>
             <label>
-              Site web:
               <input
-                className='border border-red-500 bg-gray-100'
+                className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
                 type='url'
                 value={siteWeb}
                 onChange={(e) => setSiteWeb(e.target.value)}
+                placeholder='Site web'
               />
             </label>
           </div>
           <label>
-            Résumé:
             <textarea
-              className='flex h-[100px] w-full border border-red-500 bg-gray-100'
+              className='mt-4 w-full rounded-xl border bg-gray-300 py-12 text-black hover:border-cyan-900'
               value={resume}
               onChange={(e) => setResume(e.target.value)}
+              placeholder=' Résumé'
             />
           </label>
-
-          <h2 className='text-xl font-bold'>Education</h2>
-          <div className='flex flex-col'>
-            {education.map((edu, index) => (
-              <div key={index}>
-                <label>
-                  Établissement:
-                  <input
-                    className='border border-red-500 bg-gray-100'
-                    type='text'
-                    value={edu.etablissement}
-                    onChange={(e) =>
-                      handleEducationChange(
-                        index,
-                        'etablissement',
-                        e.target.value,
-                      )
-                    }
-                  />
-                </label>
-                <label>
-                  Diplôme:
-                  <input
-                    className='border border-red-500 bg-gray-100'
-                    type='text'
-                    value={edu.diplome}
-                    onChange={(e) =>
-                      handleEducationChange(index, 'diplome', e.target.value)
-                    }
-                  />
-                </label>
-                <label>
-                  Domaine:
-                  <input
-                    className='border border-red-500 bg-gray-100'
-                    type='text'
-                    value={edu.domaine}
-                    onChange={(e) =>
-                      handleEducationChange(index, 'domaine', e.target.value)
-                    }
-                  />
-                </label>
-                <label>
-                  Date Debut:
-                  <input
-                    className='border border-red-500 bg-gray-100'
-                    type='date'
-                    value={edu.dateDebut}
-                    onChange={(e) =>
-                      handleEducationChange(index, 'dateDebut', e.target.value)
-                    }
-                  />
-                </label>
-                <label>
-                  Date Fin :
-                  <input
-                    className='border border-red-500 bg-gray-100'
-                    type='date'
-                    value={edu.dateFin}
-                    onChange={(e) =>
-                      handleEducationChange(index, 'dateFin', e.target.value)
-                    }
-                  />
-                </label>
-              </div>
-            ))}
+          <div className='flex flex-col gap-4'>
+            <h2 className='text-xl font-bold'>Education</h2>
+            <div className='flex flex-wrap items-center justify-between gap-4'>
+              {education.map((edu, index) => (
+                <div key={index}>
+                  <label>
+                    <input
+                      className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
+                      type='text'
+                      value={edu.etablissement}
+                      onChange={(e) =>
+                        handleEducationChange(
+                          index,
+                          'etablissement',
+                          e.target.value,
+                        )
+                      }
+                      placeholder='Établissement'
+                    />
+                  </label>
+                  <label>
+                    <input
+                      className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
+                      type='text'
+                      value={edu.domaine}
+                      onChange={(e) =>
+                        handleEducationChange(index, 'domaine', e.target.value)
+                      }
+                      placeholder='Domaine'
+                    />
+                  </label>
+                  <label>
+                    Diplôme:
+                    <input
+                      className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
+                      type='text'
+                      value={edu.diplome}
+                      onChange={(e) =>
+                        handleEducationChange(index, 'diplome', e.target.value)
+                      }
+                    />
+                  </label>{' '}
+                  <label>
+                    <input
+                      className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
+                      type='date'
+                      value={edu.dateDebut}
+                      onChange={(e) =>
+                        handleEducationChange(
+                          index,
+                          'dateDebut',
+                          e.target.value,
+                        )
+                      }
+                    />
+                  </label>
+                  <label>
+                    <input
+                      className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
+                      type='date'
+                      value={edu.dateFin}
+                      onChange={(e) =>
+                        handleEducationChange(index, 'dateFin', e.target.value)
+                      }
+                    />
+                  </label>
+                </div>
+              ))}
+            </div>
             <button type='button' onClick={handleAddEducation}>
               Ajouter une éducation
             </button>
+          </div>
+          <div className='dix flex flex-col gap-5'>
             <h2 className='text-xl font-bold'>Expérience</h2>
             {experience.map((exp, index) => (
               <div key={index}>
                 <label>
-                  Entreprise:
                   <input
-                    className='border border-red-500 bg-gray-100'
+                    className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
                     type='text'
                     value={exp.entreprise}
                     onChange={(e) =>
@@ -253,23 +257,23 @@ export default function CreateProfile() {
                         e.target.value,
                       )
                     }
+                    placeholder='Entreprise'
                   />
                 </label>
                 <label>
-                  Poste:
                   <input
-                    className='border border-red-500 bg-gray-100'
+                    className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
                     type='text'
                     value={exp.poste}
                     onChange={(e) =>
                       handleExperienceChange(index, 'poste', e.target.value)
                     }
+                    placeholder=' Poste'
                   />
                 </label>
                 <label>
-                  Description:
                   <input
-                    className='border border-red-500 bg-gray-100'
+                    className='mr-5 rounded-xl border  bg-gray-300 p-2 text-black hover:border-cyan-900'
                     type='text'
                     value={exp.description}
                     onChange={(e) =>
@@ -279,12 +283,12 @@ export default function CreateProfile() {
                         e.target.value,
                       )
                     }
+                    placeholder='Description'
                   />
                 </label>
                 <label>
-                  Date Debut:
                   <input
-                    className='border border-red-500 bg-gray-100'
+                    className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
                     type='date'
                     value={exp.dateDebut}
                     onChange={(e) =>
@@ -293,9 +297,8 @@ export default function CreateProfile() {
                   />
                 </label>
                 <label>
-                  Date Fin :
                   <input
-                    className='border border-red-500 bg-gray-100'
+                    className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
                     type='date'
                     value={exp.dateFin}
                     onChange={(e) =>
@@ -312,14 +315,14 @@ export default function CreateProfile() {
             {competences.map((comp, index) => (
               <div key={index}>
                 <label>
-                  Nom:
                   <input
-                    className='border border-red-500 bg-gray-100'
+                    className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
                     type='text'
                     value={comp.nom}
                     onChange={(e) =>
                       handleCompetenceChange(index, 'nom', e.target.value)
                     }
+                    placeholder='Compétence'
                   />
                 </label>
               </div>
@@ -327,14 +330,13 @@ export default function CreateProfile() {
             <button type='button' onClick={handleAddCompetence}>
               Ajouter une compétence
             </button>
+            <button
+              type='submit'
+              className='rounded-xl bg-cyan-900 px-4  py-2 font-bold text-white'
+            >
+              Créer{' '}
+            </button>
           </div>
-
-          <button
-            type='submit'
-            className='rounded-full bg-green-500 p-2 font-bold text-white'
-          >
-            Envoyer
-          </button>
         </form>
         <Toaster />
       </>
