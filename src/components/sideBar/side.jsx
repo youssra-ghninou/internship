@@ -1,7 +1,7 @@
 'use client'
+import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import SignOutButton from '../common/SignOutButton'
 
 const Side = (board) => {
   return (
@@ -57,7 +57,23 @@ const Side = (board) => {
         </Link>
         <p className='h-[55px] w-[7px] rounded-l-lg bg-[#FDDC30] '></p>
       </div>
-      <SignOutButton />
+      <div className='flex flex-row justify-between'>
+        <p className='h-[55px] w-[7px] rounded-r-lg bg-[#FDDC30] '></p>
+        <button
+          className='font-popping flex flex-col items-center text-white '
+          onClick={() => signOut()}
+        >
+          <Image
+            width={20}
+            height={20}
+            src={'/deconnexion.png'}
+            alt={'deconnexion'}
+            className='pb-1'
+          />
+          Déconnexion
+        </button>
+        <p className='h-[55px] w-[7px] rounded-l-lg bg-[#FDDC30] '></p>
+      </div>
     </div>
   )
 }

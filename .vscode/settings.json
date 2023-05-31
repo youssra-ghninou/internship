@@ -10,11 +10,13 @@
   },
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "files.encoding": "utf8",
-  "cSpell.language": "en,lorem",
+  "cSpell.language": "en,lorem,fr,fr-FR",
   "cSpell.enableFiletypes": ["dotenv", "log", "tailwindcss"],
   "cSpell.words": [
     "allroadmaps",
     "commitlint",
+    "createprofile",
+    "deconnexion",
     "ENIMISTE",
     "ENSMR",
     "googleusercontent",
@@ -23,6 +25,8 @@
     "offerid",
     "offersid",
     "offre",
+    "parametres",
+    "signout",
     "tailwindcss"
   ],
   "[javascript]": {

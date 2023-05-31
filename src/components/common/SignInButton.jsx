@@ -3,7 +3,7 @@ import { signIn } from 'next-auth/react'
 
 export default function SignInButton() {
   return (
-    <button className='btn-primary btn-active btn' onClick={() => signIn('')}>
+    <button className='bg-red-500' onClick={() => signIn('')}>
       Se Connecter
     </button>
   )

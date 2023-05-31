@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState, useTransition } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { AiFillPlusCircle } from 'react-icons/ai'
 
 export default function CreateProfile() {
   const router = useRouter()
@@ -26,7 +27,7 @@ export default function CreateProfile() {
         siteWeb !== '' &&
         resume !== ''
       ) {
-        toast.loading('Veullez patienter ...')
+        toast.loading('Veuillez patienter un peu ...')
         const response = await fetch('/api/createprofile', {
           method: 'POST',
           headers: {
@@ -45,15 +46,20 @@ export default function CreateProfile() {
         })
         toast.dismiss()
         if (response.ok) {
-          toast.success('Profile cree!')
+          toast.success('Vous avez créé votre profile!')
         } else {
-          toast.error('There was an error!')
+          toast.error(
+            'Une erreur est produite lors de la creation de votre profile, veuillez ressayer!',
+          )
         }
       } else {
-        toast.error('This field cannot be blank')
+        toast.error('Tous les champs sont obligatoires')
       }
     } catch (error) {
-      toast.error('There was an error: ' + error)
+      toast.error(
+        'Une erreur est produite lors de la creation de votre profile, veuillez ressayer!' +
+          error,
+      )
     }
     startTransition(() => {
       router.refresh()
@@ -171,7 +177,7 @@ export default function CreateProfile() {
             />
           </label>
           <div className='flex flex-col gap-4'>
-            <h2 className='text-xl font-bold'>Education</h2>
+            <h2 className='text-xl font-bold'>Éducation</h2>
             <div className='flex flex-wrap items-center justify-between gap-4'>
               {education.map((edu, index) => (
                 <div key={index}>
@@ -183,7 +189,7 @@ export default function CreateProfile() {
                       onChange={(e) =>
                         handleEducationChange(
                           index,
-                          'etablissement',
+                          'établissement',
                           e.target.value,
                         )
                       }
@@ -202,10 +208,10 @@ export default function CreateProfile() {
                     />
                   </label>
                   <label>
-                    Diplôme:
                     <input
                       className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
                       type='text'
+                      placeholder='Diplôme'
                       value={edu.diplome}
                       onChange={(e) =>
                         handleEducationChange(index, 'diplome', e.target.value)
@@ -239,8 +245,12 @@ export default function CreateProfile() {
                 </div>
               ))}
             </div>
-            <button type='button' onClick={handleAddEducation}>
-              Ajouter une éducation
+            <button
+              type='button'
+              className='mx-auto w-fit rounded-full bg-cyan-900'
+              onClick={handleAddEducation}
+            >
+              <AiFillPlusCircle color='white' size='3rem' />
             </button>
           </div>
           <div className='dix flex flex-col gap-5'>
@@ -310,8 +320,12 @@ export default function CreateProfile() {
                 </label>
               </div>
             ))}
-            <button type='button' onClick={handleAddExperience}>
-              Ajouter une expérience
+            <button
+              type='button'
+              className='mx-auto w-fit rounded-full bg-cyan-900'
+              onClick={handleAddExperience}
+            >
+              <AiFillPlusCircle color='white' size='3rem' />
             </button>
             <h2 className='text-xl font-bold'>Compétences</h2>
             {competences.map((comp, index) => (
@@ -329,14 +343,18 @@ export default function CreateProfile() {
                 </label>
               </div>
             ))}
-            <button type='button' onClick={handleAddCompetence}>
-              Ajouter une compétence
+            <button
+              type='button'
+              className='mx-auto w-fit rounded-full bg-cyan-900'
+              onClick={handleAddCompetence}
+            >
+              <AiFillPlusCircle color='white' size='3rem' />
             </button>
             <button
               type='submit'
               className='rounded-xl bg-cyan-900 px-4  py-2 font-bold text-white'
             >
-              Créer{' '}
+              Créer
             </button>
           </div>
         </form>

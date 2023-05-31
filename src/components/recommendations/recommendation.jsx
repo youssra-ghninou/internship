@@ -28,10 +28,58 @@ const Recommendation = () => {
       date: '1',
       candidats: '3',
     },
+    {
+      id: '4',
+      lien: '/Cred.png',
+      titre: 'Développeur moile',
+      location: 'Fes, Maroc',
+      date: '1',
+      candidats: '3',
+    },
+    {
+      id: '5',
+      lien: '/Cred.png',
+      titre: 'Développeur moile',
+      location: 'Fes, Maroc',
+      date: '1',
+      candidats: '3',
+    },
+    {
+      id: '6',
+      lien: '/Cred.png',
+      titre: 'Développeur moile',
+      location: 'Fes, Maroc',
+      date: '1',
+      candidats: '3',
+    },
+    {
+      id: '7',
+      lien: '/Cred.png',
+      titre: 'Développeur moile',
+      location: 'Fes, Maroc',
+      date: '1',
+      candidats: '3',
+    },
+    {
+      id: '8',
+      lien: '/Cred.png',
+      titre: 'Développeur moile',
+      location: 'Fes, Maroc',
+      date: '1',
+      candidats: '3',
+    },
+    {
+      id: '9',
+      lien: '/Cred.png',
+      titre: 'Développeur moile',
+      location: 'Fes, Maroc',
+      date: '1',
+      candidats: '3',
+    },
   ]
   return (
     <div className=' shadow-x py-2l flex flex-col gap-5 rounded-lg bg-[#FCFBFF]'>
-      {recommendationData.slice(0, 3).map((item) => {
+      {recommendationData.map((item) => {
         return (
           <div
             key={item.id}
