@@ -1,5 +1,6 @@
-import CustomLayout from '@/components/UI/customLayout'
-import SignInButton from '@/components/common/SignInButton'
+import SideBare from '@/components/UI/SideBare'
+import Filter from '@/components/UI/filter'
+import SignInButton from '@/components/buttons/SignInButton'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth'
@@ -10,9 +11,15 @@ export default async function Template({ children }) {
     const user = await getUser(session.user.email)
 
     return (
-      <CustomLayout home={'/' + user.role.toLowerCase()}>
-        {children}
-      </CustomLayout>
+      <SideBare
+        className='z-50'
+        profileimage={user.image}
+        name={user.name}
+        base={'/' + user.role.toLowerCase()}
+      >
+        <Filter />
+        <div className='p-4'>{children}</div>
+      </SideBare>
     )
   }
   return (

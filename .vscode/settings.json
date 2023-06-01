@@ -17,6 +17,7 @@
     "commitlint",
     "createprofile",
     "deconnexion",
+    "enimiste",
     "ENIMISTE",
     "ENSMR",
     "googleusercontent",
@@ -26,6 +27,7 @@
     "offersid",
     "offre",
     "parametres",
+    "profileimage",
     "signout",
     "tailwindcss"
   ],

@@ -1,6 +1,6 @@
 'use client'
 
-import SignInButton from '@/components/common/SignInButton'
+import SignInButton from '@/components/buttons/SignInButton'
 import { useSession } from 'next-auth/react'
 
 function GenerateStaticParamsProvider({ children }) {

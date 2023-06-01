@@ -1,4 +1,4 @@
-import SignInButton from '@/components/common/SignInButton'
+import SignInButton from '@/components/buttons/SignInButton'
 import CreateProfile from '@/components/profile/CreateProfile'
 import MyProfile from '@/components/profile/MyProfile'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'

@@ -1,4 +1,4 @@
-import SignInButton from '@/components/common/SignInButton'
+import SignInButton from '@/components/buttons/SignInButton'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth'
