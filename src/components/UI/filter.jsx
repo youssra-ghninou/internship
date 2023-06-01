@@ -69,7 +69,7 @@ export default function Filter() {
   ]
 
   return (
-    <div className='sticky top-0 bg-white p-4'>
+    <div className='sticky top-0 z-50 bg-white p-4'>
       <Tabs id='custom-animation' value='html'>
         <TabsHeader
           indicatorProps={{

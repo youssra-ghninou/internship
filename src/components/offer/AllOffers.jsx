@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { getOffers } from '../../../lib/queries'
+import CardOffer from '../Cards/CardOffer'
 import Button from '../candidatures/button'
 import Remuneration from '../candidatures/remuneration'
 
@@ -14,12 +15,21 @@ export default async function AllOffers() {
           Voir Tout
         </a>
       </div>
-      {offers.map(({ id, title, company }) => (
-        <>
-          <div
-            key={id}
-            className='flex w-full items-center justify-between gap-36 rounded-xl bg-white px-5 py-5 shadow-xl'
-          >
+      {offers.map(({ id, title, company, description }) => (
+        <div key={id}>
+          <CardOffer
+            image={company.image}
+            title={title}
+            company={company.name}
+            description={description}
+            remuneration={900}
+            mode={'Hybride'}
+            method={'Agile'}
+            type={'Observation'}
+            candidatsCount={50}
+            offer={id}
+          />
+          <div className='flex w-full items-center justify-between gap-36 rounded-xl bg-white px-5 py-5 shadow-xl'>
             <div className='flex items-center gap-3  '>
               <Image
                 width={100.03}
@@ -45,7 +55,7 @@ export default async function AllOffers() {
               Details
             </Link>
           </div>
-        </>
+        </div>
       ))}
     </div>
   )

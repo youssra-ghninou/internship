@@ -4,9 +4,8 @@ import Recommendation from '@/components/recommendations/recommendation'
 const InterfaceBord = () => {
   return (
     <div className='flex w-full flex-col'>
-      <div className=' text-[28px] font-semibold '>Tableau De Bord</div>
       <div className='flex flex-col gap-10'>
-        <div>
+        <div className='flex items-start justify-start gap-5'>
           <AllOffers />
         </div>
         <div className='flex flex-col gap-3'>

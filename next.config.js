@@ -4,6 +4,7 @@ const nextConfig = {
     domains: [
       'lh3.googleusercontent.com',
       'lespetitesannoncesdemarine.files.wordpress.com',
+      'images.unsplash.com',
     ],
   },
   experimental: {

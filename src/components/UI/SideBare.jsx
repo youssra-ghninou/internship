@@ -82,7 +82,7 @@ export default function SideBare({ children, base, name, profileimage }) {
 
   return (
     <div className='flex'>
-      <Card className='shadow-white-900/5 sticky top-0 left-0 z-50 h-[calc(100vh)] max-w-[18rem] rounded-none bg-[#22506C] text-white shadow-xl'>
+      <Card className='shadow-white-900/5 sticky left-0 top-0 z-50 h-[calc(100vh)] max-w-[18rem] rounded-none bg-[#22506C] text-white shadow-xl'>
         <div className='mb-2 flex items-center gap-4 p-4'>
           <Image
             src='/logo.png'
@@ -113,10 +113,9 @@ export default function SideBare({ children, base, name, profileimage }) {
             }
           >
             <ListItem className='p-0' selected={open === 1}>
-              <Link key={name} href={base}></Link>
               <AccordionHeader
                 onClick={() => handleOpen(1)}
-                className='flex w-full justify-between gap-1 border-b-0 py-3 px-1 text-base text-white'
+                className='flex w-full justify-between gap-1 border-b-0 px-1 py-3 text-base text-white'
               >
                 <Avatar
                   variant='circular'

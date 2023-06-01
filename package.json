@@ -21,17 +21,19 @@
     "@material-tailwind/react": "^2.0.1",
     "@next-auth/prisma-adapter": "^1.0.5",
     "@prisma/client": "^4.14.1",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "daisyui": "^2.51.6",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.4",
     "heroicons": "^2.0.18",
     "husky": "^8.0.3",
-    "next": "^13.4.1",
+    "next": "^13.4.4",
     "next-auth": "^4.20.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.8.0",
+    "react-lines-ellipsis": "^0.15.3",
     "swr": "^2.1.1"
   },
   "devDependencies": {
@@ -40,6 +42,6 @@
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.4",
     "prisma": "^4.14.1",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.3.2"
   }
 }

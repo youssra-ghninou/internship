@@ -1,5 +1,4 @@
 import SideBare from '@/components/UI/SideBare'
-import Filter from '@/components/UI/filter'
 import SignInButton from '@/components/buttons/SignInButton'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getUser } from '@@/queries'
@@ -17,7 +16,7 @@ export default async function Template({ children }) {
         name={user.name}
         base={'/' + user.role.toLowerCase()}
       >
-        <Filter />
+        {/* <Filter /> */}
         <div className='p-4'>{children}</div>
       </SideBare>
     )

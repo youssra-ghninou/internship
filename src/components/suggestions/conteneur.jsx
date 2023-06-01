@@ -30,7 +30,7 @@ const Conteneur = () => {
   ]
   return (
     <div className='relative h-[460px] w-[340px]  rounded-xl bg-white p-3 shadow-xl'>
-      <div className='absolute top-[10px] left-[320px] '>
+      <div className='absolute left-[320px] top-[10px] '>
         <a href='#'>
           {' '}
           <Image
