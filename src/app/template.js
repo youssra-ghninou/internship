@@ -1,3 +1,4 @@
+import Filter from '@/components/UI/Filter'
 import SideBare from '@/components/UI/SideBare'
 import SignInButton from '@/components/buttons/SignInButton'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
@@ -8,7 +9,6 @@ export default async function Template({ children }) {
   const session = await getServerSession(authOptions)
   if (session) {
     const user = await getUser(session.user.email)
-
     return (
       <SideBare
         className='z-50'
@@ -16,14 +16,14 @@ export default async function Template({ children }) {
         name={user.name}
         base={'/' + user.role.toLowerCase()}
       >
-        {/* <Filter /> */}
+        <Filter />
         <div className='p-4'>{children}</div>
       </SideBare>
     )
-  }
-  return (
-    <div className='flex h-screen items-center justify-center'>
-      <SignInButton />
-    </div>
-  )
+  } else
+    return (
+      <div className='flex h-screen items-center justify-center'>
+        <SignInButton />
+      </div>
+    )
 }

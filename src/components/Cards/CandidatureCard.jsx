@@ -3,7 +3,6 @@ import {
   AcademicCapIcon,
   BanknotesIcon,
   CommandLineIcon,
-  CursorArrowRaysIcon,
   HeartIcon,
   HomeIcon,
 } from '@heroicons/react/24/solid'
@@ -13,14 +12,14 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Chip,
   IconButton,
   Tooltip,
 } from '@material-tailwind/react'
 import Image from 'next/image'
-import Link from 'next/link'
 import LinesEllipsis from 'react-lines-ellipsis'
 
-export default function CardOffer({
+export default function CandidatureCard({
   title,
   offer,
   image,
@@ -31,9 +30,7 @@ export default function CardOffer({
   method,
   type,
   candidatsCount,
-  lieu,
-  author,
-  applications,
+  status,
 }) {
   return (
     <Card className='z-0 flex w-full max-w-[25rem] justify-between shadow-lg'>
@@ -105,16 +102,19 @@ export default function CardOffer({
           </Tooltip>
         </div>
       </CardBody>
-      <CardFooter>
-        <Link href={'/offers/' + offer}>
-          <Button
-            fullWidth
-            variant='outlined'
-            className='flex items-center justify-center gap-3 hover:bg-blue-500 hover:text-white'
-          >
-            <CursorArrowRaysIcon strokeWidth={2} className='h-5 w-5' /> Postuler
-          </Button>
-        </Link>
+      <CardFooter className='flex flex-col gap-3'>
+        <Chip
+          variant='ghost'
+          color='green'
+          size='sm'
+          value={status === null ? 'En Cour de traitement' : { status }}
+          icon={
+            <span className="mx-auto mt-1 block h-2 w-2 rounded-full bg-green-900 content-['']" />
+          }
+        />
+        <Button fullWidth color='red'>
+          Supprimer
+        </Button>
       </CardFooter>
     </Card>
   )

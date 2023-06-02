@@ -5,6 +5,7 @@ import {
   LifebuoyIcon,
   MagnifyingGlassIcon,
   PencilIcon,
+  RocketLaunchIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline'
 import {
@@ -65,6 +66,11 @@ export default function SideBare({ children, base, name, profileimage }) {
       icon: <InboxIcon />,
     },
     {
+      href: JSON.stringify(base).replace(/"/g, '') + '/mescandidatures',
+      title: 'Mes Candidatures',
+      icon: <RocketLaunchIcon />,
+    },
+    {
       href: JSON.stringify(base).replace(/"/g, '') + '/profile',
       title: 'Paramètre',
       icon: <Cog6ToothIcon />,
@@ -82,7 +88,7 @@ export default function SideBare({ children, base, name, profileimage }) {
 
   return (
     <div className='flex'>
-      <Card className='shadow-white-900/5 sticky left-0 top-0 z-50 h-[calc(100vh)] max-w-[18rem] rounded-none bg-[#22506C] text-white shadow-xl'>
+      <Card className='shadow-white-900/5 sticky left-0 top-0 z-50 h-[calc(100vh)] max-w-[16rem] rounded-none bg-[#22506C] text-white shadow-xl'>
         <div className='mb-2 flex items-center gap-4 p-4'>
           <Image
             src='/logo.png'

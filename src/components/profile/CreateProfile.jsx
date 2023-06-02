@@ -152,7 +152,7 @@ export default function CreateProfile() {
             <label>
               <input
                 className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                type='tel'
+                type='text'
                 value={telephone}
                 onChange={(e) => setTelephone(e.target.value)}
                 placeholder='Téléphone'
@@ -161,7 +161,7 @@ export default function CreateProfile() {
             <label>
               <input
                 className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                type='url'
+                type='text'
                 value={siteWeb}
                 onChange={(e) => setSiteWeb(e.target.value)}
                 placeholder='Site web'
@@ -170,7 +170,8 @@ export default function CreateProfile() {
           </div>
           <label>
             <textarea
-              className='mt-4 w-full rounded-xl border bg-gray-300 py-12 text-black hover:border-cyan-900'
+              rows='4'
+              className='mt-4 w-full rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
               value={resume}
               onChange={(e) => setResume(e.target.value)}
               placeholder=' Résumé'
@@ -189,7 +190,7 @@ export default function CreateProfile() {
                       onChange={(e) =>
                         handleEducationChange(
                           index,
-                          'établissement',
+                          'etablissement',
                           e.target.value,
                         )
                       }

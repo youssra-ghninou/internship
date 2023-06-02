@@ -55,6 +55,12 @@ model Offer {
   startDate     DateTime
   endDate       DateTime
   companyId     String
+  localisation  String
+  mode          String
+  remuneration  String
+  methode       String
+  offertype     String
+  link          String?
   applications  Application[]
   company       Company       @relation(fields: [companyId], references: [id])
   coordinatorId String?
@@ -68,7 +74,7 @@ model Application {
   student       User      @relation(fields: [studentId], references: [id])
   offerId       String
   offer         Offer     @relation(fields: [offerId], references: [id])
-  status        String
+  status        String?
   interviewDate DateTime?
   agreementUrl  String?
   createdAt     DateTime  @default(now())
@@ -118,6 +124,12 @@ enum Status {
   ACTIVE
   DRAFT
   ARCHIVED
+}
+
+enum StatusCandidature {
+  Processing
+  Accepted
+  Rejected
 }
 
 model Profile {
