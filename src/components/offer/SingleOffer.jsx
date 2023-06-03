@@ -1,4 +1,5 @@
-export default async function SingleOffers({ offer }) {
+'use client'
+export default function SingleOffers({ offer }) {
   return (
     <div className='overflow-hidden rounded-lg bg-white shadow-lg'>
       <div className='p-6'>

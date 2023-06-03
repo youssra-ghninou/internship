@@ -3,7 +3,6 @@ import {
   AcademicCapIcon,
   BanknotesIcon,
   CommandLineIcon,
-  HeartIcon,
   HomeIcon,
 } from '@heroicons/react/24/solid'
 import {
@@ -13,15 +12,15 @@ import {
   CardFooter,
   CardHeader,
   Chip,
-  IconButton,
   Tooltip,
 } from '@material-tailwind/react'
+import clsx from 'clsx'
 import Image from 'next/image'
 import LinesEllipsis from 'react-lines-ellipsis'
 
 export default function CandidatureCard({
   title,
-  offer,
+  status,
   image,
   description,
   company,
@@ -30,7 +29,6 @@ export default function CandidatureCard({
   method,
   type,
   candidatsCount,
-  status,
 }) {
   return (
     <Card className='z-0 flex w-full max-w-[25rem] justify-between shadow-lg'>
@@ -43,14 +41,6 @@ export default function CandidatureCard({
           alt={title}
         />
         <div className='to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 ' />
-        <IconButton
-          size='sm'
-          color='red'
-          variant='text'
-          className='!absolute right-4 top-4 rounded-full'
-        >
-          <HeartIcon className='h-6 w-6' />
-        </IconButton>
       </CardHeader>
       <CardBody>
         <div className='flex w-full justify-between font-bold'>
@@ -105,11 +95,21 @@ export default function CandidatureCard({
       <CardFooter className='flex flex-col gap-3'>
         <Chip
           variant='ghost'
-          color='green'
+          color={
+            status === null ? 'amber' : status === 'Rejeté' ? 'red' : 'green'
+          }
           size='sm'
-          value={status === null ? 'En Cour de traitement' : { status }}
+          value={status === null ? 'En Cour de traitement' : status}
           icon={
-            <span className="mx-auto mt-1 block h-2 w-2 rounded-full bg-green-900 content-['']" />
+            <span
+              className={clsx(
+                'mx-auto mt-1 block h-2 w-2 rounded-full',
+                status === null && 'bg-amber-900',
+                status === 'Accepté' && 'bg-green-900',
+                status === 'Rejeté' && 'bg-red-900',
+              )}
+            />
+            // <span className=" bg-green-900 " />
           }
         />
         <Button fullWidth color='red'>

@@ -4,7 +4,6 @@ import {
   BanknotesIcon,
   CommandLineIcon,
   CursorArrowRaysIcon,
-  HeartIcon,
   HomeIcon,
 } from '@heroicons/react/24/solid'
 import {
@@ -13,12 +12,12 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
-  IconButton,
   Tooltip,
 } from '@material-tailwind/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import LinesEllipsis from 'react-lines-ellipsis'
+import DialogPopUp from '../dialogs/DialogPopUp'
 
 export default function CardOffer({
   title,
@@ -36,7 +35,7 @@ export default function CardOffer({
   applications,
 }) {
   return (
-    <Card className='z-0 flex w-full max-w-[25rem] justify-between shadow-lg'>
+    <Card className='z-0 flex w-full max-w-[24rem] justify-between shadow-lg'>
       <CardHeader floated={false} color='blue-gray'>
         <Image
           className='mx-auto'
@@ -46,14 +45,6 @@ export default function CardOffer({
           alt={title}
         />
         <div className='to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 ' />
-        <IconButton
-          size='sm'
-          color='red'
-          variant='text'
-          className='!absolute right-4 top-4 rounded-full'
-        >
-          <HeartIcon className='h-6 w-6' />
-        </IconButton>
       </CardHeader>
       <CardBody>
         <div className='flex w-full justify-between font-bold'>
@@ -105,7 +96,7 @@ export default function CardOffer({
           </Tooltip>
         </div>
       </CardBody>
-      <CardFooter>
+      <CardFooter className='flex w-full justify-around'>
         <Link href={'/offers/' + offer}>
           <Button
             fullWidth
@@ -115,6 +106,12 @@ export default function CardOffer({
             <CursorArrowRaysIcon strokeWidth={2} className='h-5 w-5' /> Postuler
           </Button>
         </Link>
+        <DialogPopUp
+          offerTitle={title}
+          offerDescription={description}
+          text={'Détailles'}
+          sizeValue={'xxl'}
+        />
       </CardFooter>
     </Card>
   )

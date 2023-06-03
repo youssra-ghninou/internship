@@ -1,18 +1,24 @@
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { getServerSession } from 'next-auth'
 import Link from 'next/link'
-import { getOffers } from '../../../lib/queries'
+import { getOffers, getUser } from '../../../lib/queries'
 import CardOffer from '../Cards/CardOffer'
 
 export default async function AllOffers() {
-  const offers = await getOffers()
+  const session = await getServerSession(authOptions)
+
+  const user = await getUser(session.user.email)
+
+  const offers = await getOffers(user.id)
   return (
-    <div className='flex flex-col gap-5 py-3'>
+    <div className='flex w-fit flex-col gap-5 rounded-lg bg-white p-4'>
       <div className='flex items-center justify-between'>
-        <div className='text-xl font-bold'>Offres disponibles</div>
+        <div className='text-2xl font-bold'>Offres disponibles</div>
         <Link href='/offers' className='text-sm font-bold text-[#043CA7]'>
           Voir Tout
         </Link>
       </div>
-      <div className='carousel rounded-box flex gap-3'>
+      <div className='flex flex-wrap gap-3 pb-2'>
         {offers.map(
           ({
             id,
@@ -25,7 +31,7 @@ export default async function AllOffers() {
             methode,
             offertype,
           }) => (
-            <div className='carousel-item' key={id}>
+            <div className='' key={id}>
               <CardOffer
                 image={company.image}
                 title={title}
