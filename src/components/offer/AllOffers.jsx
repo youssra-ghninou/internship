@@ -6,7 +6,6 @@ import CardOffer from '../Cards/CardOffer'
 
 export default async function AllOffers() {
   const session = await getServerSession(authOptions)
-
   const offers = await getOffers(session.user.id)
   return (
     <div className='flex w-fit flex-col gap-5 rounded-lg bg-white p-4'>
@@ -28,6 +27,9 @@ export default async function AllOffers() {
             remuneration,
             methode,
             offertype,
+            author,
+            startDate,
+            endDate,
           }) => (
             <div className='' key={id}>
               <CardOffer
@@ -42,6 +44,9 @@ export default async function AllOffers() {
                 lieu={localisation}
                 candidatsCount={50}
                 offer={id}
+                author={author}
+                startDate={startDate}
+                endDate={endDate}
               />
             </div>
           ),

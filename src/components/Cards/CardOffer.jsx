@@ -24,15 +24,16 @@ export default function CardOffer({
   offer,
   image,
   description,
-  company,
   remuneration,
   mode,
   method,
   type,
   candidatsCount,
-  lieu,
+  company,
   author,
-  applications,
+  endDate,
+  startDate,
+  lieu,
 }) {
   return (
     <Card className='z-0 flex w-full max-w-[24rem] justify-between shadow-lg'>
@@ -109,6 +110,13 @@ export default function CardOffer({
         <DialogPopUp
           offerTitle={title}
           offerDescription={description}
+          author={author}
+          localisation={lieu}
+          mode={mode}
+          remuneration={remuneration}
+          methode={type}
+          startDate={startDate}
+          endDate={endDate}
           text={'Détailles'}
           sizeValue={'xxl'}
         />

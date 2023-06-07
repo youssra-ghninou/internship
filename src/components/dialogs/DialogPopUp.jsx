@@ -8,7 +8,20 @@ import {
 } from '@material-tailwind/react'
 import { Fragment, useState } from 'react'
 
-export default function DialogPopUp({ text, offerTitle, offerDescription }) {
+export default function DialogPopUp({
+  text,
+  offerTitle,
+  offerDescription,
+  company,
+  author,
+  endDate,
+  startDate,
+  localisation,
+  mode,
+  remuneration,
+  methode,
+  offertype,
+}) {
   const [size, setSize] = useState(null)
 
   const handleOpen = (value) => setSize(value)
@@ -27,7 +40,46 @@ export default function DialogPopUp({ text, offerTitle, offerDescription }) {
       </div>
       <Dialog open={size === 'xxl'} size={size || 'md'} handler={handleOpen}>
         <DialogHeader>{offerTitle}</DialogHeader>
-        <DialogBody divider>{offerDescription}</DialogBody>
+        <DialogBody divider>
+          <div className='overflow-hidden rounded-lg bg-white shadow-lg'>
+            <div className='p-6'>
+              <p className='mb-4 text-base text-gray-700'>{offerDescription}</p>
+              <div className='flex items-center justify-between text-sm text-gray-500'>
+                <div className='flex items-center space-x-4'>
+                  <div>
+                    <p className='font-semibold text-gray-900'>{company}</p>
+                    <p>{author ? author.name : 'ENIM'}</p>
+                    <p>{localisation}</p>
+                    <p>{mode}</p>
+                    <p>{remuneration}</p>
+                    <p>{methode}</p>
+                    <p>{offertype}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='border-t border-gray-200 bg-gray-100 px-6 py-4'>
+              <p className='text-sm text-gray-600'>
+                Date de début de stage:
+                {new Date(startDate).toLocaleDateString(undefined, {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                })}
+              </p>
+            </div>
+            <div className='border-t border-gray-200 bg-gray-100 px-6 py-4'>
+              <p className='text-sm text-gray-600'>
+                Date de fin de stage:
+                {new Date(endDate).toLocaleDateString(undefined, {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                })}
+              </p>
+            </div>
+          </div>
+        </DialogBody>
         <DialogFooter>
           <Button
             variant='text'
