@@ -15,7 +15,6 @@ export default async function Template({ children }) {
         name={user.name}
         base={'/' + user.role.toLowerCase()}
       >
-        {/* <Filter /> */}
         <div className='bg-gray-100 p-4'>{children}</div>
       </SideBare>
     )

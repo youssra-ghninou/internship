@@ -1,15 +1,13 @@
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
-import { getOffers, getUser } from '../../../lib/queries'
+import { getOffers } from '../../../lib/queries'
 import CardOffer from '../Cards/CardOffer'
 
 export default async function AllOffers() {
   const session = await getServerSession(authOptions)
 
-  const user = await getUser(session.user.email)
-
-  const offers = await getOffers(user.id)
+  const offers = await getOffers(session.user.id)
   return (
     <div className='flex w-fit flex-col gap-5 rounded-lg bg-white p-4'>
       <div className='flex items-center justify-between'>
