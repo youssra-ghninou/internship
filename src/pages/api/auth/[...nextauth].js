@@ -6,6 +6,9 @@ import GoogleProvider from 'next-auth/providers/google'
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: '/',
+  },
   callbacks: {
     async signIn({ account, profile, user }) {
       if (account.provider === 'google') {

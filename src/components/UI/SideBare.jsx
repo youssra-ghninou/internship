@@ -27,6 +27,7 @@ import {
   ListItemPrefix,
   Typography,
 } from '@material-tailwind/react'
+import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -74,11 +75,6 @@ export default function SideBare({ children, base, name, profileimage }) {
       href: JSON.stringify(base).replace(/"/g, '') + '/profile',
       title: 'Paramètre',
       icon: <Cog6ToothIcon />,
-    },
-    {
-      href: '/api/auth/signout',
-      title: 'Déconnexion',
-      icon: <PowerIcon />,
     },
   ]
 
@@ -161,17 +157,10 @@ export default function SideBare({ children, base, name, profileimage }) {
           </Accordion>
           <hr className='border-white-50 my-2' />
           {menuItems.map(({ href, title, icon }, key) => {
-            const isLastItem = key === menuItems.length - 1
             return (
               <Link key={title} href={href}>
-                <ListItem
-                  className={`${isLastItem ? 'text-red-500' : 'text-white'}`}
-                >
-                  <ListItemPrefix
-                    className={`${
-                      isLastItem ? 'h-5 w-5 text-red-500' : 'h-5 w-5 text-white'
-                    }`}
-                  >
+                <ListItem className='text-white'>
+                  <ListItemPrefix className='h-5 w-5 text-white'>
                     {icon}
                   </ListItemPrefix>
                   {title}
@@ -179,6 +168,14 @@ export default function SideBare({ children, base, name, profileimage }) {
               </Link>
             )
           })}
+          <button onClick={() => signOut({ callbackUrl: '/' })}>
+            <ListItem className='text-white'>
+              <ListItemPrefix className='h-5 w-5 text-white'>
+                <PowerIcon />
+              </ListItemPrefix>
+              Déconnexion
+            </ListItem>
+          </button>
         </List>
         <Alert
           open={openAlert}

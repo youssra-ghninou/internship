@@ -5,6 +5,7 @@ const nextConfig = {
       'lh3.googleusercontent.com',
       'lespetitesannoncesdemarine.files.wordpress.com',
       'images.unsplash.com',
+      'source.unsplash.com',
     ],
   },
   experimental: {

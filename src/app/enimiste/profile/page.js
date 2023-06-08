@@ -1,4 +1,4 @@
-import SignInButton from '@/components/buttons/SignInButton'
+import LoginForm from '@/components/login/LoginForm'
 import CreateProfile from '@/components/profile/CreateProfile'
 import MyProfile from '@/components/profile/MyProfile'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
@@ -18,5 +18,5 @@ export default async function Profile() {
     }
     return <CreateProfile />
   }
-  return <SignInButton />
+  return <LoginForm />
 }

@@ -1,4 +1,4 @@
-import SignInButton from '@/components/buttons/SignInButton'
+import LoginForm from '@/components/login/LoginForm'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth/next'
@@ -12,7 +12,7 @@ export default async function Home() {
   }
   return (
     <div className='flex items-center justify-center'>
-      <SignInButton />
+      <LoginForm />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import SignInButton from '@/components/buttons/SignInButton'
+import LoginForm from '@/components/login/LoginForm'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth'
@@ -14,7 +14,7 @@ export default async function CompanyLayout({ children }) {
   }
   return (
     <div className='flex h-screen items-center justify-center'>
-      <SignInButton />
+      <LoginForm />
     </div>
   )
 }

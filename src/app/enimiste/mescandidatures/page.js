@@ -1,5 +1,5 @@
-import SignInButton from '@/components/buttons/SignInButton'
 import MesCandidature from '@/components/candidatures/MesCandidature'
+import LoginForm from '@/components/login/LoginForm'
 import CreateProfile from '@/components/profile/CreateProfile'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getCandidature, getUser } from '@@/queries'
@@ -19,5 +19,5 @@ export default async function MesCandidaturesPage() {
     }
     return <CreateProfile />
   }
-  return <SignInButton />
+  return <LoginForm />
 }
