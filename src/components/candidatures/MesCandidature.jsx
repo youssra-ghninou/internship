@@ -5,14 +5,16 @@ export default function MesCandidature({ candidatureData }) {
   return (
     <div className='flex flex-col gap-5 py-3'>
       <div className='flex items-center justify-between'>
-        <div className='text-xl font-bold'>Mes Candidatures</div>
+        <div className='text-2xl font-bold text-[#043CA7]'>
+          Mes Candidatures
+        </div>
       </div>
       <div className='carousel rounded-box flex gap-3'>
         {candidatureData.map(
           ({
             status,
+            id,
             offer: {
-              id,
               title,
               company,
               description,
@@ -34,8 +36,8 @@ export default function MesCandidature({ candidatureData }) {
                 method={methode}
                 type={offertype}
                 lieu={localisation}
-                candidatsCount={50}
                 status={status}
+                candidature_id={id}
               />
             </div>
           ),

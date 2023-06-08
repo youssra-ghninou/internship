@@ -1,18 +1,19 @@
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
-import { getOffers } from '../../../lib/queries'
+import { getOffers, getUser } from '../../../lib/queries'
 import CardOffer from '../Cards/CardOffer'
 
-export default async function AllOffers() {
+export default async function AllOffers({ searchParams }) {
+  console.log(searchParams)
   const session = await getServerSession(authOptions)
-  const offers = await getOffers(session.user.id)
+  const user = await getUser(session.user.email)
+  const offers = await getOffers(user.id)
   return (
     <div className='flex w-fit flex-col gap-5 rounded-lg bg-white p-4'>
       <div className='flex items-center justify-between'>
-        <div className='text-2xl font-bold'>Offres disponibles</div>
-        <Link href='/offers' className='text-sm font-bold text-[#043CA7]'>
-          Voir Tout
+        <Link href='/offers' className='text-2xl font-bold text-[#043CA7]'>
+          Offres disponibles
         </Link>
       </div>
       <div className='flex flex-wrap gap-3 pb-2'>
@@ -30,6 +31,7 @@ export default async function AllOffers() {
             author,
             startDate,
             endDate,
+            _count: { applications },
           }) => (
             <div className='' key={id}>
               <CardOffer
@@ -42,7 +44,7 @@ export default async function AllOffers() {
                 method={methode}
                 type={offertype}
                 lieu={localisation}
-                candidatsCount={50}
+                candidatsCount={applications}
                 offer={id}
                 author={author}
                 startDate={startDate}

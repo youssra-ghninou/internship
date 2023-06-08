@@ -16,6 +16,9 @@ import {
 } from '@material-tailwind/react'
 import clsx from 'clsx'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { startTransition } from 'react'
+import { Toaster, toast } from 'react-hot-toast'
 import LinesEllipsis from 'react-lines-ellipsis'
 
 export default function CandidatureCard({
@@ -28,8 +31,31 @@ export default function CandidatureCard({
   mode,
   method,
   type,
-  candidatsCount,
+  candidature_id,
 }) {
+  const router = useRouter()
+  const deletePost = async (id) => {
+    if (window.confirm('Retirer votre candidature ?')) {
+      try {
+        toast.loading('Waiting...')
+        const response = await fetch('/api/deleteapplication', {
+          method: 'POST',
+          body: id,
+        })
+        toast.dismiss()
+        if (response.ok) {
+          toast.success('Successfully deleted!')
+        } else {
+          toast.error('There was an error!' + response)
+        }
+      } catch (error) {
+        toast.error('There was an error: ' + error)
+      }
+    }
+    startTransition(() => {
+      router.refresh()
+    })
+  }
   return (
     <Card className='z-0 flex w-full max-w-[25rem] justify-between shadow-lg'>
       <CardHeader floated={false} color='blue-gray'>
@@ -85,11 +111,6 @@ export default function CandidatureCard({
               <AcademicCapIcon className='h-4 w-4' />
             </span>
           </Tooltip>
-          <Tooltip content={'Nombre de candidats : + ' + candidatsCount}>
-            <span className='cursor-pointer rounded-full border border-blue-500/5 bg-blue-500/5 p-3 text-blue-500 transition-colors hover:border-blue-500/10 hover:bg-blue-500/10 hover:!opacity-100 group-hover:opacity-70'>
-              +{candidatsCount}
-            </span>
-          </Tooltip>
         </div>
       </CardBody>
       <CardFooter className='flex flex-col gap-3'>
@@ -112,10 +133,17 @@ export default function CandidatureCard({
             // <span className=" bg-green-900 " />
           }
         />
-        <Button fullWidth color='red'>
+        <Button
+          onClick={() => {
+            deletePost(candidature_id)
+          }}
+          fullWidth
+          color='red'
+        >
           Supprimer
         </Button>
       </CardFooter>
+      <Toaster />
     </Card>
   )
 }
