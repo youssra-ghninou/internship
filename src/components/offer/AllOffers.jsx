@@ -44,10 +44,10 @@ export default async function AllOffers() {
                 type={offertype}
                 lieu={localisation}
                 candidatsCount={applications}
-                offer={id}
                 author={author}
                 startDate={startDate}
                 endDate={endDate}
+                offer_id={id}
               />
             </div>
           ),

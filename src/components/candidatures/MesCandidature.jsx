@@ -9,7 +9,7 @@ export default function MesCandidature({ candidatureData }) {
           Mes Candidatures
         </div>
       </div>
-      <div className='carousel rounded-box flex gap-3'>
+      <div className='rounded-box flex gap-3'>
         {candidatureData.map(
           ({
             status,
@@ -25,7 +25,7 @@ export default function MesCandidature({ candidatureData }) {
               offertype,
             },
           }) => (
-            <div className='carousel-item' key={id}>
+            <div className='' key={id}>
               <CandidatureCard
                 image={company.image}
                 title={title}

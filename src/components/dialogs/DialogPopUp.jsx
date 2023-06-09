@@ -1,3 +1,4 @@
+'use client'
 import { InformationCircleIcon } from '@heroicons/react/24/solid'
 import {
   Button,
@@ -6,7 +7,9 @@ import {
   DialogFooter,
   DialogHeader,
 } from '@material-tailwind/react'
-import { Fragment, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Fragment, startTransition, useState } from 'react'
+import { Toaster, toast } from 'react-hot-toast'
 
 export default function DialogPopUp({
   text,
@@ -21,14 +24,40 @@ export default function DialogPopUp({
   remuneration,
   methode,
   offertype,
+  offer_id,
 }) {
   const [size, setSize] = useState(null)
 
   const handleOpen = (value) => setSize(value)
 
+  const router = useRouter()
+
+  const postuler = async (id) => {
+    if (window.confirm('Voulez vous postuler ?')) {
+      try {
+        toast.loading('Waiting...')
+        const response = await fetch('/api/postuler', {
+          method: 'POST',
+          body: id,
+        })
+        toast.dismiss()
+        if (response.ok) {
+          toast.success('Vous avez postuler')
+        } else {
+          toast.error('There was an error!' + response)
+        }
+      } catch (error) {
+        toast.error('There was an error: ' + error)
+      }
+    }
+    startTransition(() => {
+      router.refresh()
+    })
+  }
+
   return (
     <Fragment>
-      <div className='mb-3 flex gap-3'>
+      <div className='mb-3 flex w-full gap-3'>
         <Button
           fullWidth
           className='flex items-center justify-center gap-3 bg-cyan-500 text-white'
@@ -87,15 +116,18 @@ export default function DialogPopUp({
             onClick={() => handleOpen(null)}
             className='mr-1'
           >
-            <span>Cancel</span>
+            <span>Annuler</span>
           </Button>
           <Button
             variant='gradient'
             color='green'
-            onClick={() => handleOpen(null)}
+            onClick={() => {
+              postuler(offer_id)
+            }}
           >
-            <span>Confirm</span>
+            <span>Postuler</span>
           </Button>
+          <Toaster />
         </DialogFooter>
       </Dialog>
     </Fragment>

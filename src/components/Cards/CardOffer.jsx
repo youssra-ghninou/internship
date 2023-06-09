@@ -3,11 +3,9 @@ import {
   AcademicCapIcon,
   BanknotesIcon,
   CommandLineIcon,
-  CursorArrowRaysIcon,
   HomeIcon,
 } from '@heroicons/react/24/solid'
 import {
-  Button,
   Card,
   CardBody,
   CardFooter,
@@ -15,13 +13,11 @@ import {
   Tooltip,
 } from '@material-tailwind/react'
 import Image from 'next/image'
-import Link from 'next/link'
 import LinesEllipsis from 'react-lines-ellipsis'
 import DialogPopUp from '../dialogs/DialogPopUp'
 
 export default function CardOffer({
   title,
-  offer,
   image,
   description,
   remuneration,
@@ -34,6 +30,7 @@ export default function CardOffer({
   endDate,
   startDate,
   lieu,
+  offer_id,
 }) {
   return (
     <Card className='z-0 flex w-full max-w-[24rem] justify-between shadow-lg'>
@@ -97,16 +94,7 @@ export default function CardOffer({
           </Tooltip>
         </div>
       </CardBody>
-      <CardFooter className='flex w-full justify-around'>
-        <Link href={'/offers/' + offer}>
-          <Button
-            fullWidth
-            variant='outlined'
-            className='flex items-center justify-center gap-3 hover:bg-blue-500 hover:text-white'
-          >
-            <CursorArrowRaysIcon strokeWidth={2} className='h-5 w-5' /> Postuler
-          </Button>
-        </Link>
+      <CardFooter className='flex w-full'>
         <DialogPopUp
           offerTitle={title}
           offerDescription={description}
@@ -117,6 +105,7 @@ export default function CardOffer({
           methode={type}
           startDate={startDate}
           endDate={endDate}
+          offer_id={offer_id}
           text={'Détailles'}
           sizeValue={'xxl'}
         />
