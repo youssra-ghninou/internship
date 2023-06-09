@@ -24,7 +24,6 @@
     "@tailwindcss/line-clamp": "^0.4.4",
     "clsx": "^1.2.1",
     "daisyui": "^2.51.6",
-    "dayjs": "^1.11.8",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.4",
     "formik": "^2.4.1",
@@ -37,7 +36,6 @@
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.8.0",
     "react-lines-ellipsis": "^0.15.3",
-    "react-tailwindcss-datepicker": "^1.6.1",
     "swr": "^2.1.1",
     "yup": "^1.2.0"
   },
