@@ -4,8 +4,7 @@ import Link from 'next/link'
 import { getOffers, getUser } from '../../../lib/queries'
 import CardOffer from '../Cards/CardOffer'
 
-export default async function AllOffers({ searchParams }) {
-  console.log(searchParams)
+export default async function AllOffers() {
   const session = await getServerSession(authOptions)
   const user = await getUser(session.user.email)
   const offers = await getOffers(user.id)

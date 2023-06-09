@@ -101,7 +101,9 @@ export default function LoginForm() {
                       strokeWidth={2}
                       className='h-7 w-7'
                     />
-                    {formik.isSubmitting ? 'Please wait...' : 'Connexion'}
+                    {formik.isSubmitting
+                      ? 'Veuillez patienter...'
+                      : 'Connexion'}
                   </Button>
                   <hr className='my-6 w-full border-gray-300' />
                   <Button
