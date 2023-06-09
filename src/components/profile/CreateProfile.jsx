@@ -1,9 +1,10 @@
 'use client'
+import { IconButton, Input, Textarea } from '@material-tailwind/react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState, useTransition } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
-import { AiFillPlusCircle } from 'react-icons/ai'
+import { AiFillPlusCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 
 export default function CreateProfile() {
   const router = useRouter()
@@ -80,6 +81,21 @@ export default function CreateProfile() {
     ])
   }
 
+  const handleEducationChange = (index, field, value) => {
+    setEducation((prevEducation) => {
+      const updatedEducation = [...prevEducation]
+      updatedEducation[index][field] = value
+      return updatedEducation
+    })
+  }
+
+  const handleDeleteEducation = (index) => {
+    setEducation((prevEducation) => {
+      const updatedEducation = prevEducation.filter((_, i) => i !== index)
+      return updatedEducation
+    })
+  }
+
   const handleAddExperience = () => {
     setExperience((prevExperience) => [
       ...prevExperience,
@@ -93,18 +109,6 @@ export default function CreateProfile() {
     ])
   }
 
-  const handleAddCompetence = () => {
-    setCompetences((prevCompetences) => [...prevCompetences, { nom: '' }])
-  }
-
-  const handleEducationChange = (index, field, value) => {
-    setEducation((prevEducation) => {
-      const updatedEducation = [...prevEducation]
-      updatedEducation[index][field] = value
-      return updatedEducation
-    })
-  }
-
   const handleExperienceChange = (index, field, value) => {
     setExperience((prevExperience) => {
       const updatedExperience = [...prevExperience]
@@ -113,10 +117,28 @@ export default function CreateProfile() {
     })
   }
 
+  const handleDeleteExperience = (index) => {
+    setExperience((prevExperience) => {
+      const updatedExperience = prevExperience.filter((_, i) => i !== index)
+      return updatedExperience
+    })
+  }
+
+  const handleAddCompetence = () => {
+    setCompetences((prevCompetences) => [...prevCompetences, { nom: '' }])
+  }
+
   const handleCompetenceChange = (index, field, value) => {
     setCompetences((prevCompetences) => {
       const updatedCompetences = [...prevCompetences]
       updatedCompetences[index][field] = value
+      return updatedCompetences
+    })
+  }
+
+  const handleDeleteCompetence = (index) => {
+    setCompetences((prevCompetences) => {
+      const updatedCompetences = prevCompetences.filter((_, i) => i !== index)
       return updatedCompetences
     })
   }
@@ -128,64 +150,61 @@ export default function CreateProfile() {
     return (
       <>
         <form className='gap-10 p-2' onSubmit={handleSubmit}>
-          <div className=' text-[28px] font-semibold '>Créer votre profil </div>
-          <div className='flex flex-wrap items-center gap-3'>
-            <label>
-              <input
-                className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                type='text'
-                value={titre}
-                onChange={(e) => setTitre(e.target.value)}
-                disabled={isPending}
-                placeholder='Titre'
-              />
-            </label>
-            <label>
-              <input
-                className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                type='text'
-                value={adresse}
-                onChange={(e) => setAdresse(e.target.value)}
-                placeholder='Adresse:'
-              />
-            </label>
-            <label>
-              <input
-                className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                type='text'
-                value={telephone}
-                onChange={(e) => setTelephone(e.target.value)}
-                placeholder='Téléphone'
-              />
-            </label>
-            <label>
-              <input
-                className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                type='text'
-                value={siteWeb}
-                onChange={(e) => setSiteWeb(e.target.value)}
-                placeholder='Site web'
-              />
-            </label>
+          <div className=' text-[28px] font-semibold text-[#043CA7]'>
+            Créer votre profil
           </div>
-          <label>
-            <textarea
-              rows='4'
-              className='mt-4 w-full rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
+          <div className='flex w-full flex-wrap items-center justify-center gap-3 pt-2 lg:justify-between'>
+            <Input
+              containerProps={{ className: 'max-w-[280px]' }}
+              variant='outlined'
+              label='Titre'
+              type='text'
+              value={titre}
+              onChange={(e) => setTitre(e.target.value)}
+              disabled={isPending}
+            />
+            <Input
+              containerProps={{ className: 'max-w-[280px]' }}
+              variant='outlined'
+              label='Téléphone'
+              value={telephone}
+              onChange={(e) => setTelephone(e.target.value)}
+            />
+            <Input
+              containerProps={{ className: 'max-w-[280px]' }}
+              variant='outlined'
+              label='Site web'
+              value={siteWeb}
+              onChange={(e) => setSiteWeb(e.target.value)}
+            />
+            <Input
+              containerProps={{ className: 'max-w-[280px]' }}
+              variant='outlined'
+              label='Adresse'
+              value={adresse}
+              onChange={(e) => setAdresse(e.target.value)}
+            />
+          </div>
+          <div className='pt-3'>
+            <Textarea
+              color='blue'
+              label='Résumé'
               value={resume}
               onChange={(e) => setResume(e.target.value)}
-              placeholder=' Résumé'
             />
-          </label>
-          <div className='flex flex-col gap-4'>
-            <h2 className='text-xl font-bold'>Éducation</h2>
+          </div>
+          <div className='flex flex-col gap-4 pt-4'>
+            <h2 className='text-xl font-bold text-[#043CA7]'>Éducation</h2>
             <div className='flex flex-wrap items-center justify-between gap-4'>
               {education.map((edu, index) => (
-                <div key={index}>
+                <div
+                  className='flex w-full flex-wrap justify-between gap-3'
+                  key={index}
+                >
                   <label>
-                    <input
-                      className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                      type='text'
+                    <Input
+                      variant='outlined'
+                      label='Établissement'
                       value={edu.etablissement}
                       onChange={(e) =>
                         handleEducationChange(
@@ -194,35 +213,32 @@ export default function CreateProfile() {
                           e.target.value,
                         )
                       }
-                      placeholder='Établissement'
                     />
                   </label>
                   <label>
-                    <input
-                      className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                      type='text'
+                    <Input
+                      variant='outlined'
+                      label='Domaine'
                       value={edu.domaine}
                       onChange={(e) =>
                         handleEducationChange(index, 'domaine', e.target.value)
                       }
-                      placeholder='Domaine'
                     />
                   </label>
                   <label>
-                    <input
-                      className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                      type='text'
-                      placeholder='Diplôme'
+                    <Input
+                      variant='outlined'
+                      label='Diplôme'
                       value={edu.diplome}
                       onChange={(e) =>
                         handleEducationChange(index, 'diplome', e.target.value)
                       }
                     />
-                  </label>{' '}
+                  </label>
                   <label>
-                    <input
-                      className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
+                    <Input
                       type='date'
+                      label='Date Début'
                       value={edu.dateDebut}
                       onChange={(e) =>
                         handleEducationChange(
@@ -234,15 +250,22 @@ export default function CreateProfile() {
                     />
                   </label>
                   <label>
-                    <input
-                      className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
+                    <Input
                       type='date'
+                      label='Date Fin'
                       value={edu.dateFin}
                       onChange={(e) =>
                         handleEducationChange(index, 'dateFin', e.target.value)
                       }
                     />
                   </label>
+                  <IconButton
+                    className='rounded-full text-3xl'
+                    onClick={() => handleDeleteEducation(index)}
+                    color='red'
+                  >
+                    <AiOutlineCloseCircle />
+                  </IconButton>
                 </div>
               ))}
             </div>
@@ -254,71 +277,68 @@ export default function CreateProfile() {
               <AiFillPlusCircle color='white' size='3rem' />
             </button>
           </div>
-          <div className='dix flex flex-col gap-5'>
-            <h2 className='text-xl font-bold'>Expérience</h2>
+
+          <div className='flex flex-col gap-5'>
+            <h2 className='text-xl font-bold text-[#043CA7]'>Expérience</h2>
             {experience.map((exp, index) => (
-              <div key={index}>
-                <label>
-                  <input
-                    className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                    type='text'
-                    value={exp.entreprise}
-                    onChange={(e) =>
-                      handleExperienceChange(
-                        index,
-                        'entreprise',
-                        e.target.value,
-                      )
-                    }
-                    placeholder='Entreprise'
-                  />
-                </label>
-                <label>
-                  <input
-                    className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                    type='text'
-                    value={exp.poste}
-                    onChange={(e) =>
-                      handleExperienceChange(index, 'poste', e.target.value)
-                    }
-                    placeholder=' Poste'
-                  />
-                </label>
-                <label>
-                  <input
-                    className='mr-5 rounded-xl border  bg-gray-300 p-2 text-black hover:border-cyan-900'
-                    type='text'
-                    value={exp.description}
-                    onChange={(e) =>
-                      handleExperienceChange(
-                        index,
-                        'description',
-                        e.target.value,
-                      )
-                    }
-                    placeholder='Description'
-                  />
-                </label>
-                <label>
-                  <input
-                    className='mr-5 rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                    type='date'
-                    value={exp.dateDebut}
-                    onChange={(e) =>
-                      handleExperienceChange(index, 'dateDebut', e.target.value)
-                    }
-                  />
-                </label>
-                <label>
-                  <input
-                    className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                    type='date'
-                    value={exp.dateFin}
-                    onChange={(e) =>
-                      handleExperienceChange(index, 'dateFin', e.target.value)
-                    }
-                  />
-                </label>
+              <div
+                className='flex w-full flex-wrap justify-between gap-2'
+                key={index}
+              >
+                <iInput
+                  containerProps={{ className: 'max-w-[280px]' }}
+                  variant='outlined'
+                  label='Entreprise'
+                  value={exp.entreprise}
+                  onChange={(e) =>
+                    handleExperienceChange(index, 'entreprise', e.target.value)
+                  }
+                />
+                <Input
+                  containerProps={{ className: 'max-w-[280px]' }}
+                  variant='outlined'
+                  label='Poste'
+                  value={exp.poste}
+                  onChange={(e) =>
+                    handleExperienceChange(index, 'poste', e.target.value)
+                  }
+                />
+                <Input
+                  containerProps={{ className: 'max-w-[280px]' }}
+                  variant='outlined'
+                  label='Description'
+                  value={exp.description}
+                  onChange={(e) =>
+                    handleExperienceChange(index, 'description', e.target.value)
+                  }
+                />
+                <Input
+                  containerProps={{ className: 'max-w-[180px]' }}
+                  variant='outlined'
+                  label='Date Debut'
+                  type='date'
+                  value={exp.dateDebut}
+                  onChange={(e) =>
+                    handleExperienceChange(index, 'dateDebut', e.target.value)
+                  }
+                />
+                <Input
+                  containerProps={{ className: 'max-w-[180px]' }}
+                  variant='outlined'
+                  label='Date Fin'
+                  type='date'
+                  value={exp.dateFin}
+                  onChange={(e) =>
+                    handleExperienceChange(index, 'dateFin', e.target.value)
+                  }
+                />
+                <IconButton
+                  className='rounded-full text-3xl'
+                  onClick={() => handleDeleteExperience(index)}
+                  color='red'
+                >
+                  <AiOutlineCloseCircle />
+                </IconButton>
               </div>
             ))}
             <button
@@ -328,22 +348,35 @@ export default function CreateProfile() {
             >
               <AiFillPlusCircle color='white' size='3rem' />
             </button>
-            <h2 className='text-xl font-bold'>Compétences</h2>
-            {competences.map((comp, index) => (
-              <div key={index}>
-                <label>
-                  <input
-                    className='rounded-xl border bg-gray-300 p-2 text-black hover:border-cyan-900'
-                    type='text'
-                    value={comp.nom}
-                    onChange={(e) =>
-                      handleCompetenceChange(index, 'nom', e.target.value)
-                    }
-                    placeholder='Compétence'
-                  />
-                </label>
-              </div>
-            ))}
+            <h2 className='text-xl font-bold text-[#043CA7]'>Compétences</h2>
+            <div className='flex w-full flex-wrap gap-10'>
+              {competences.map((comp, index) => (
+                <div
+                  className='flex w-1/5 items-center justify-between'
+                  key={index}
+                >
+                  <label>
+                    <Input
+                      containerProps={{ className: 'max-w-[100px]' }}
+                      variant='outlined'
+                      label='Compétence'
+                      value={comp.nom}
+                      onChange={(e) =>
+                        handleCompetenceChange(index, 'nom', e.target.value)
+                      }
+                    />
+                  </label>
+                  <IconButton
+                    className='w-full rounded-full text-2xl text-red-500'
+                    onClick={() => handleDeleteCompetence(index)}
+                    variant='text'
+                    size='sm'
+                  >
+                    <AiOutlineCloseCircle />
+                  </IconButton>
+                </div>
+              ))}
+            </div>
             <button
               type='button'
               className='mx-auto w-fit rounded-full bg-cyan-900'

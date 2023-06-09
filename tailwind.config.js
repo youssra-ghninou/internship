@@ -8,6 +8,7 @@ module.exports = withMT({
 
     // Or if using `src` directory:
     './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/react-tailwindcss-datepicker/dist/index.esm.js',
   ],
   theme: {
     extend: {},

@@ -9,7 +9,6 @@
     "formulahendry.auto-rename-tag",
     "dsznajder.es7-react-js-snippets",
     "bradlc.vscode-tailwindcss",
-    "lokalise.i18n-ally",
-    "ChakrounAnas.turbo-console-log"
+    "lokalise.i18n-ally"
   ]
 }
