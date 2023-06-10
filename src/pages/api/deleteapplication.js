@@ -9,5 +9,5 @@ export default async function handler(req, res) {
       },
     })
     res.status(200).json(result)
-  }
+  } else res.redirect(307, '/').end()
 }

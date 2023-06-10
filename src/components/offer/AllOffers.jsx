@@ -48,6 +48,7 @@ export default async function AllOffers() {
                 startDate={startDate}
                 endDate={endDate}
                 offer_id={id}
+                MyProfile={user?.profile?.profileId}
               />
             </div>
           ),

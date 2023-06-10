@@ -6,16 +6,16 @@ import { useState, useTransition } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { AiFillPlusCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 
-export default function CreateProfile() {
+export default function EditProfile({ data }) {
   const router = useRouter()
-  const [titre, setTitre] = useState('')
-  const [adresse, setAdresse] = useState('')
-  const [telephone, setTelephone] = useState('')
-  const [siteWeb, setSiteWeb] = useState('')
-  const [resume, setResume] = useState('')
-  const [education, setEducation] = useState([])
-  const [experience, setExperience] = useState([])
-  const [competences, setCompetences] = useState([])
+  const [titre, setTitre] = useState(data.profile.titre)
+  const [adresse, setAdresse] = useState(data.profile.adresse)
+  const [telephone, setTelephone] = useState(data.profile.telephone)
+  const [siteWeb, setSiteWeb] = useState(data.profile.siteWeb)
+  const [resume, setResume] = useState(data.profile.resume)
+  const [education, setEducation] = useState(data.profile.education)
+  const [experience, setExperience] = useState(data.profile.experience)
+  const [competences, setCompetences] = useState(data.profile.competences)
   const [isPending, startTransition] = useTransition()
 
   const handleSubmit = async (e) => {
@@ -29,7 +29,7 @@ export default function CreateProfile() {
         resume !== ''
       ) {
         toast.loading('Veuillez patienter un peu ...')
-        const response = await fetch('/api/createprofile', {
+        const response = await fetch('/api/updateprofile', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -46,11 +46,15 @@ export default function CreateProfile() {
           }),
         })
         toast.dismiss()
+        startTransition(() => {
+          router.refresh()
+          router.push('/enimiste/profile')
+        })
         if (response.ok) {
-          toast.success('Vous avez créé votre profile!')
+          toast.success('Vous avez mis a jour votre profile!')
         } else {
           toast.error(
-            'Une erreur est produite lors de la creation de votre profile, veuillez ressayer!',
+            'Une erreur est produite lors de la modification de votre profile, veuillez ressayer kjhkjh!',
           )
         }
       } else {
@@ -58,14 +62,10 @@ export default function CreateProfile() {
       }
     } catch (error) {
       toast.error(
-        'Une erreur est produite lors de la creation de votre profile, veuillez ressayer!' +
+        'Une erreur est produite lors de la modification de votre profile, veuillez ressayer!' +
           error,
       )
     }
-    startTransition(() => {
-      router.push('/enimiste/profile')
-      router.refresh()
-    })
   }
   const { data: session, status } = useSession()
 
@@ -152,7 +152,7 @@ export default function CreateProfile() {
       <>
         <form className='gap-10 p-2' onSubmit={handleSubmit}>
           <div className=' text-[28px] font-semibold text-[#043CA7]'>
-            Créer votre profil
+            Modifier votre profile
           </div>
           <div className='flex w-full flex-wrap items-center justify-center gap-3 pt-2 lg:justify-between'>
             <Input
@@ -389,7 +389,7 @@ export default function CreateProfile() {
               type='submit'
               className='rounded-xl bg-cyan-900 px-4  py-2 font-bold text-white'
             >
-              Créer
+              Modifier
             </button>
           </div>
         </form>

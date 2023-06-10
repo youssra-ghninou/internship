@@ -31,6 +31,7 @@ export default function CardOffer({
   startDate,
   lieu,
   offer_id,
+  MyProfile,
 }) {
   return (
     <Card className='z-0 flex w-full max-w-[24rem] justify-between shadow-lg'>
@@ -106,6 +107,7 @@ export default function CardOffer({
           startDate={startDate}
           endDate={endDate}
           offer_id={offer_id}
+          VerifyProfile={MyProfile}
           text={'Détailles'}
           sizeValue={'xxl'}
         />

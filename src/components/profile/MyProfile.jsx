@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import EditButton from './EditButton'
 
 export default function Profile({ data }) {
   return (
@@ -27,7 +26,6 @@ export default function Profile({ data }) {
             <div className='name font-bold text-[#043CA7]'>
               Informations personnelles :
             </div>
-            <EditButton />
           </div>
           <div className='flex'>
             <div className='flex w-full flex-col pl-5'>
@@ -58,7 +56,6 @@ export default function Profile({ data }) {
         <div className='flex w-full flex-col gap-4 rounded-xl border-2 p-5 shadow-md'>
           <div className='flex items-center justify-between'>
             <span className='font-bold text-[#043CA7]'>Éducation : </span>
-            <EditButton />
           </div>
           {data.profile.education.map((educ) => {
             return (
@@ -100,7 +97,6 @@ export default function Profile({ data }) {
         <div className='flex w-full flex-col gap-4 rounded-xl border-2 p-3 shadow-md'>
           <div className='flex items-center justify-between'>
             <span className='font-bold text-[#043CA7]'>Éxpériences : </span>
-            <EditButton />
           </div>
           {data.profile.experience.map((exp) => {
             return (
@@ -152,9 +148,7 @@ export default function Profile({ data }) {
               })}
             </div>
           </div>
-
-          <EditButton />
-        </div>{' '}
+        </div>
       </div>
     </div>
   )

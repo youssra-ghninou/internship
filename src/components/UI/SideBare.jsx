@@ -46,7 +46,7 @@ export default function SideBare({ children, base, name, profileimage }) {
     {
       label: 'Éditer Profile',
       icon: PencilIcon,
-      link: JSON.stringify(base).replace(/"/g, '') + '/profile',
+      link: JSON.stringify(base).replace(/"/g, '') + '/profile/edit',
     },
     {
       label: 'Aide',
