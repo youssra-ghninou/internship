@@ -1,6 +1,6 @@
 import LoginForm from '@/components/login/LoginForm'
 import CreateProfile from '@/components/profile/CreateProfile'
-import EditProfile from '@/components/profile/EditProfile'
+import EditProfile from '@/components/profile/Editprofile'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth/next'
