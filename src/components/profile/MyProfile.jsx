@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function Profile({ data }) {
+export default function MyProfile({ data }) {
   return (
     <div className=' text-left '>
       <div className=' text-[28px] font-semibold text-[#043CA7]'>
