@@ -33,7 +33,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
-export default function SideBare({ children, base, name, profileimage }) {
+export default function SideBare({ children, base, name, profileimage, role }) {
   const [open, setOpen] = React.useState(0)
   const [openAlert, setOpenAlert] = React.useState(true)
   const pathname = usePathname()
@@ -55,7 +55,7 @@ export default function SideBare({ children, base, name, profileimage }) {
     },
   ]
 
-  const menuItems = [
+  const menuItemsEnimiste = [
     {
       href: JSON.stringify(base).replace(/"/g, ''),
       title: 'Accueil',
@@ -78,6 +78,28 @@ export default function SideBare({ children, base, name, profileimage }) {
     },
   ]
 
+  const menuItemsCompany = [
+    {
+      href: JSON.stringify(base).replace(/"/g, ''),
+      title: 'Accueil',
+      icon: <PresentationChartBarIcon />,
+    },
+    {
+      href: JSON.stringify(base).replace(/"/g, '') + '/mesoffres',
+      title: 'Mes Offres',
+      icon: <InboxIcon />,
+    },
+    {
+      href: JSON.stringify(base).replace(/"/g, '') + '/createoffer',
+      title: 'Publier une offre',
+      icon: <RocketLaunchIcon />,
+    },
+    {
+      href: JSON.stringify(base).replace(/"/g, '') + '/profile',
+      title: 'Paramètre',
+      icon: <Cog6ToothIcon />,
+    },
+  ]
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value)
   }
@@ -124,7 +146,7 @@ export default function SideBare({ children, base, name, profileimage }) {
                   size='sm'
                   alt={name}
                   className='border border-blue-500 p-0.5'
-                  src={profileimage}
+                  src={profileimage ? profileimage : '/avatar.png'}
                 />
                 {name}
               </AccordionHeader>
@@ -156,18 +178,33 @@ export default function SideBare({ children, base, name, profileimage }) {
             </AccordionBody>
           </Accordion>
           <hr className='border-white-50 my-2' />
-          {menuItems.map(({ href, title, icon }, key) => {
-            return (
-              <Link key={title} href={href}>
-                <ListItem className='text-white'>
-                  <ListItemPrefix className='h-5 w-5 text-white'>
-                    {icon}
-                  </ListItemPrefix>
-                  {title}
-                </ListItem>
-              </Link>
-            )
-          })}
+          {role === 'COMPANY' &&
+            menuItemsCompany.map(({ href, title, icon }, key) => {
+              return (
+                <Link key={title} href={href}>
+                  <ListItem className='text-white'>
+                    <ListItemPrefix className='h-5 w-5 text-white'>
+                      {icon}
+                    </ListItemPrefix>
+                    {title}
+                  </ListItem>
+                </Link>
+              )
+            })}
+          {role === 'ENIMISTE' &&
+            menuItemsEnimiste.map(({ href, title, icon }, key) => {
+              return (
+                <Link key={title} href={href}>
+                  <ListItem className='text-white'>
+                    <ListItemPrefix className='h-5 w-5 text-white'>
+                      {icon}
+                    </ListItemPrefix>
+                    {title}
+                  </ListItem>
+                </Link>
+              )
+            })}
+
           <button onClick={() => signOut({ callbackUrl: '/' })}>
             <ListItem className='text-white'>
               <ListItemPrefix className='h-5 w-5 text-white'>

@@ -14,6 +14,7 @@ export default async function Template({ children }) {
         profileimage={user.image}
         name={user.name}
         base={'/' + user.role.toLowerCase()}
+        role={user.role}
       >
         <div className='bg-gray-100 p-4'>{children}</div>
       </SideBare>

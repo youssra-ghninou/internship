@@ -13,8 +13,8 @@ export const dynamicParams = false
 
 export default async function RootLayout({ children }) {
   return (
-    <html data-theme='cupcake' lang='en'>
-      <body>
+    <html lang='fr'>
+      <body className='bg-gray-100'>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

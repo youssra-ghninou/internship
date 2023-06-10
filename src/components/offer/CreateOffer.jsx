@@ -1,4 +1,5 @@
 'use client'
+import { Input, Option, Select, Textarea } from '@material-tailwind/react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { startTransition, useState } from 'react'
@@ -6,12 +7,17 @@ import toast, { Toaster } from 'react-hot-toast'
 
 export default function CreateOfferForm() {
   const router = useRouter()
+  const [mode, setMode] = useState('')
+  const [type, setType] = useState('')
   const [offerData, setOfferData] = useState({
     title: '',
     description: '',
     startDate: '',
     endDate: '',
-    companyId: '',
+    localisation: '',
+    remuneration: '',
+    lien: '',
+    methode: '',
   })
 
   const handleSubmit = async (e) => {
@@ -22,7 +28,10 @@ export default function CreateOfferForm() {
         offerData.description !== '' &&
         offerData.startDate !== '' &&
         offerData.endDate !== '' &&
-        offerData.companyId !== ''
+        offerData.localisation !== '' &&
+        offerData.remuneration !== '' &&
+        mode !== '' &&
+        type !== ''
       ) {
         toast.loading('Waiting...')
         const response = await fetch('/api/createoffer', {
@@ -30,7 +39,7 @@ export default function CreateOfferForm() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(offerData),
+          body: JSON.stringify({ offerData, mode, type }),
         })
         toast.dismiss()
         if (response.ok) {
@@ -40,8 +49,13 @@ export default function CreateOfferForm() {
             description: '',
             startDate: '',
             endDate: '',
-            companyId: '',
+            localisation: '',
+            remuneration: '',
+            lien: '',
+            methode: '',
           })
+          setType('')
+          setMode('')
         } else {
           toast.error('There was an error!')
         }
@@ -61,89 +75,111 @@ export default function CreateOfferForm() {
       ...offerData,
       [e.target.name]: e.target.value,
     })
+    console.log(offerData)
   }
+  const handleSelectMode = (e) => {
+    setMode(e)
+  }
+  const handleSelectType = (e) => {
+    setType(e)
+  }
+
   const { data: session, status } = useSession()
 
   return (
     <>
-      <form onSubmit={handleSubmit} className='mx-auto max-w-sm'>
-        <div className='mb-4'>
-          <label
-            htmlFor='title'
-            className='block text-sm font-medium text-gray-700'
-          >
-            Title:
-          </label>
-          <input
-            type='text'
+      <form
+        onSubmit={handleSubmit}
+        className='h-ful mx-auto flex flex-col gap-3'
+      >
+        <div className='text-[28px] font-semibold text-[#043CA7]'>
+          Publier une offre
+        </div>
+        <div className='flex flex-wrap gap-2'>
+          <Input
+            variant='outlined'
+            label='Titre de l’offre'
             name='title'
             value={offerData.title}
             onChange={handleChange}
             required
-            className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
           />
-        </div>
-        <div className='mb-4'>
-          <label
-            htmlFor='description'
-            className='block text-sm font-medium text-gray-700'
-          >
-            Description:
-          </label>
-          <textarea
-            name='description'
-            value={offerData.description}
+          <Input
+            variant='outlined'
+            label='Methode de travaille'
+            name='methode'
+            value={offerData.methode}
             onChange={handleChange}
             required
-            className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
+          />
+          <Input
+            variant='outlined'
+            label='Ville de l’offre'
+            name='localisation'
+            value={offerData.localisation}
+            onChange={handleChange}
+            required
+          />
+          <Select
+            value={offerData.mode}
+            onChange={handleSelectMode}
+            required
+            label='Sélectionner le Mode'
+          >
+            <Option value='A distance'>A distance</Option>
+            <Option value='Hybrid'>Hybrid</Option>
+            <Option value='Présentiel'>Présentiel</Option>
+          </Select>
+          <Select
+            value={offerData.type}
+            onChange={handleSelectType}
+            required
+            label='Sélectionner le type'
+          >
+            <Option value='PFE'>Projet de fin d’Étude</Option>
+            <Option value='PFA'>Projet de fin d’Année</Option>
+          </Select>
+          <Input
+            variant='outlined'
+            label='Rémunération'
+            name='remuneration'
+            value={offerData.remuneration}
+            onChange={handleChange}
+            required
+          />
+          <Input
+            variant='outlined'
+            label='Lien vers l’offre'
+            name='lien'
+            value={offerData.lien}
+            onChange={handleChange}
           />
         </div>
-        <div className='mb-4'>
-          <label
-            htmlFor='startDate'
-            className='block text-sm font-medium text-gray-700'
-          >
-            Start Date:
-          </label>
-          <input
+        <Textarea
+          label='Description de l`offre'
+          name='description'
+          value={offerData.description}
+          onChange={handleChange}
+          required
+        />
+        <div className='flex gap-3'>
+          <Input
+            variant='outlined'
+            label='Date de debut de stage'
             type='date'
             name='startDate'
             value={offerData.startDate}
             onChange={handleChange}
             required
-            className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
           />
-        </div>
-        <div className='mb-4'>
-          <label
-            htmlFor='endDate'
-            className='block text-sm font-medium text-gray-700'
-          >
-            End Date:
-          </label>
-          <input
+          <Input
+            variant='outlined'
+            label='Date de fin de stage'
             type='date'
             name='endDate'
             value={offerData.endDate}
             onChange={handleChange}
             required
-            className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
-          />
-        </div>
-        <div className='mb-4'>
-          <label
-            htmlFor='companyId'
-            className='block text-sm font-medium text-gray-700'
-          >
-            Company ID:
-          </label>
-          <input
-            type='text'
-            name='companyId'
-            value={offerData.companyId}
-            onChange={handleChange}
-            required
-            className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
           />
         </div>
         <div className='text-center'>
