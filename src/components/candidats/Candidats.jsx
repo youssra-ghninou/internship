@@ -14,74 +14,113 @@ import {
   Chip,
   IconButton,
   Input,
+  Tab,
+  Tabs,
+  TabsHeader,
   Tooltip,
   Typography,
 } from '@material-tailwind/react'
 
-const TABLE_HEAD = ['Étudiant', 'Titre', 'Status', 'Année d’Étude', '']
+const TABS = [
+  {
+    label: 'All',
+    value: 'all',
+  },
+  {
+    label: 'Monitored',
+    value: 'monitored',
+  },
+  {
+    label: 'Unmonitored',
+    value: 'unmonitored',
+  },
+]
+
+const TABLE_HEAD = ['Member', 'Function', 'Status', 'Employed', '']
 
 const TABLE_ROWS = [
   {
-    img: 'https://internship-hazel.vercel.app/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTtfDW5UMMpJ83azX3k6CPbNGybJzjFk-pHh3MHMa%3Ds400-c&w=128&q=75',
-    name: 'Ghninou Youssra',
-    email: 'ghninou.youssra@enim.ac.ma',
-    job: 'Élève Ingénieur',
-    org: 'ENIM',
-    status: 'Accepté',
-    anneetude: '1 ere année',
+    img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg',
+    name: 'John Michael',
+    email: 'john@creative-tim.com',
+    job: 'Manager',
+    org: 'Organization',
+    online: true,
+    date: '23/04/18',
   },
   {
-    img: 'https://internship-hazel.vercel.app/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTtczWCyC9IOL4_e1C1BjjVh7gSq-uAakDSa4506W%3Ds400-c&w=128&q=75',
-    name: 'Anouar Aimade',
-    email: 'anouar.aimade@gmail.com',
-    job: 'Élève Ingénieur',
-    org: 'ENIM',
-    status: 'Rejeté',
-    anneetude: '1 ere année',
+    img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg',
+    name: 'Alexa Liras',
+    email: 'alexa@creative-tim.com',
+    job: 'Programator',
+    org: 'Developer',
+    online: false,
+    date: '23/04/18',
   },
   {
-    img: 'https://internship-hazel.vercel.app/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTtfDW5UMMpJ83azX3k6CPbNGybJzjFk-pHh3MHMa%3Ds400-c&w=128&q=75',
-    name: 'Doulfoukar Nada',
-    email: 'doulfoukar.nada@enim.ac.ma',
-    job: 'Élève Ingénieur',
-    org: 'ENIM',
-    status: 'Rejete',
-    anneetude: '2 eme année',
+    img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg',
+    name: 'Laurent Perrier',
+    email: 'laurent@creative-tim.com',
+    job: 'Executive',
+    org: 'Projects',
+    online: false,
+    date: '19/09/17',
   },
   {
-    img: 'https://internship-hazel.vercel.app/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTtfDW5UMMpJ83azX3k6CPbNGybJzjFk-pHh3MHMa%3Ds400-c&w=128&q=75',
-    name: 'Chichaoui Hamza',
-    email: 'chichaoui.hamza@enim.ac.ma',
-    job: 'Élève Ingénieur',
-    org: 'ENIM',
-    status: 'Accepté',
-    anneetude: '3 eme année',
+    img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg',
+    name: 'Michael Levi',
+    email: 'michael@creative-tim.com',
+    job: 'Programator',
+    org: 'Developer',
+    online: true,
+    date: '24/12/08',
+  },
+  {
+    img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
+    name: 'Richard Gran',
+    email: 'richard@creative-tim.com',
+    job: 'Manager',
+    org: 'Executive',
+    online: false,
+    date: '04/10/21',
   },
 ]
-export default function SingleOffers({ offer }) {
+
+export default function Candidat() {
   return (
     <Card className='h-full w-full'>
       <CardHeader floated={false} shadow={false} className='rounded-none'>
         <div className='mb-8 flex items-center justify-between gap-8'>
           <div>
             <Typography variant='h5' color='blue-gray'>
-              Liste des candidats
+              Members list
             </Typography>
             <Typography color='gray' className='mt-1 font-normal'>
-              Ici vous trouvez les candidats qui on postulés à cet offre
+              See information about all members
             </Typography>
           </div>
           <div className='flex shrink-0 flex-col gap-2 sm:flex-row'>
+            <Button variant='outlined' color='blue-gray' size='sm'>
+              view all
+            </Button>
             <Button className='flex items-center gap-3' color='blue' size='sm'>
-              <UserPlusIcon strokeWidth={2} className='h-4 w-4' /> Sélectionner
-              candidat
+              <UserPlusIcon strokeWidth={2} className='h-4 w-4' /> Add member
             </Button>
           </div>
         </div>
         <div className='flex flex-col items-center justify-between gap-4 md:flex-row'>
+          <Tabs value='all' className='w-full md:w-max'>
+            <TabsHeader>
+              {TABS.map(({ label, value }) => (
+                <Tab key={value} value={value}>
+                  &nbsp;&nbsp;{label}&nbsp;&nbsp;
+                </Tab>
+              ))}
+            </TabsHeader>
+          </Tabs>
           <div className='w-full md:w-72'>
             <Input
-              label='Rechercher'
+              label='Search'
               icon={<MagnifyingGlassIcon className='h-5 w-5' />}
             />
           </div>
@@ -112,7 +151,7 @@ export default function SingleOffers({ offer }) {
           </thead>
           <tbody>
             {TABLE_ROWS.map(
-              ({ img, name, email, job, org, status, anneetude }, index) => {
+              ({ img, name, email, job, org, online, date }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1
                 const classes = isLast
                   ? 'p-4'
@@ -142,7 +181,7 @@ export default function SingleOffers({ offer }) {
                       </div>
                     </td>
                     <td className={classes}>
-                      <div className='flex w-max flex-col'>
+                      <div className='flex flex-col'>
                         <Typography
                           variant='small'
                           color='blue-gray'
@@ -160,24 +199,12 @@ export default function SingleOffers({ offer }) {
                       </div>
                     </td>
                     <td className={classes}>
-                      <div className='max-w-fit text-center'>
+                      <div className='w-max'>
                         <Chip
                           variant='ghost'
                           size='sm'
-                          value={
-                            status === 'Rejeté'
-                              ? 'Rejeté'
-                              : status === 'Accepté'
-                              ? status
-                              : 'En cours de traitement'
-                          }
-                          color={
-                            status === 'Rejeté'
-                              ? 'red'
-                              : status === 'Accepté'
-                              ? 'green'
-                              : 'yellow'
-                          }
+                          value={online ? 'online' : 'offline'}
+                          color={online ? 'green' : 'blue-gray'}
                         />
                       </div>
                     </td>
@@ -187,7 +214,7 @@ export default function SingleOffers({ offer }) {
                         color='blue-gray'
                         className='font-normal'
                       >
-                        {anneetude}
+                        {date}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -206,14 +233,14 @@ export default function SingleOffers({ offer }) {
       </CardBody>
       <CardFooter className='flex items-center justify-between border-t border-blue-gray-50 p-4'>
         <Typography variant='small' color='blue-gray' className='font-normal'>
-          Page 1
+          Page 1 of 10
         </Typography>
         <div className='flex gap-2'>
           <Button variant='outlined' color='blue-gray' size='sm'>
-            Précédent
+            Previous
           </Button>
           <Button variant='outlined' color='blue-gray' size='sm'>
-            Suivant
+            Next
           </Button>
         </div>
       </CardFooter>

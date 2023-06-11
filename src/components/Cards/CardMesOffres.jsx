@@ -108,6 +108,7 @@ export default function CardMesOffer({
           offer_id={offer_id}
           text={'Détailles'}
           sizeValue={'xxl'}
+          companytext={'Ouvrir'}
         />
       </CardFooter>
     </Card>

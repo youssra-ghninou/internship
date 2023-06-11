@@ -1,12 +1,24 @@
 'use client'
-import { InformationCircleIcon } from '@heroicons/react/24/solid'
+import {
+  ArchiveBoxIcon,
+  BellIcon,
+  CurrencyDollarIcon,
+  InformationCircleIcon,
+} from '@heroicons/react/24/solid'
 import {
   Button,
   Dialog,
   DialogBody,
   DialogFooter,
   DialogHeader,
+  Timeline,
+  TimelineConnector,
+  TimelineHeader,
+  TimelineIcon,
+  TimelineItem,
+  Typography,
 } from '@material-tailwind/react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Fragment, startTransition, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
@@ -22,7 +34,7 @@ export default function CompanyDialogPopUp({
   localisation,
   mode,
   remuneration,
-  methode,
+  companytext,
   offertype,
   offer_id,
 }) {
@@ -32,11 +44,11 @@ export default function CompanyDialogPopUp({
 
   const router = useRouter()
 
-  const postuler = async (id) => {
-    if (window.confirm('Voulez vous postuler ?')) {
+  const supprimer = async (id) => {
+    if (window.confirm('Voulez vous supprimer cette offre ?')) {
       try {
         toast.loading('Waiting...')
-        const response = await fetch('/api/postuler', {
+        const response = await fetch('/api/supprimeroffre', {
           method: 'POST',
           body: id,
         })
@@ -57,6 +69,13 @@ export default function CompanyDialogPopUp({
   return (
     <Fragment>
       <div className='mb-3 flex w-full gap-3'>
+        <Link
+          href={'/company/mesoffres/' + offer_id}
+          className='flex items-center justify-center gap-3 bg-green-200 text-white'
+        >
+          <InformationCircleIcon strokeWidth={2} className='h-5 w-5' />
+          {companytext}
+        </Link>
         <Button
           fullWidth
           className='flex items-center justify-center gap-3 bg-cyan-500 text-white'
@@ -66,52 +85,156 @@ export default function CompanyDialogPopUp({
           {text}
         </Button>
       </div>
-      <Dialog open={size === 'xxl'} size={size || 'md'} handler={handleOpen}>
+      <Dialog
+        open={size === 'xxl'}
+        size={size || 'md'}
+        className='w-screen bg-white'
+        handler={handleOpen}
+      >
         <DialogHeader>{offerTitle}</DialogHeader>
-        <DialogBody divider>
-          <div className='overflow-hidden rounded-lg bg-white shadow-lg'>
-            <div className='p-6'>
-              <p className='mb-4 text-base text-gray-700'>{offerDescription}</p>
-              <div className='flex items-center justify-between text-sm text-gray-500'>
-                <div className='flex items-center space-x-4'>
-                  <div>
-                    <p className='font-semibold text-gray-900'>{company}</p>
-                    <p>{author ? author.name : 'ENIM'}</p>
-                    <p>{localisation}</p>
-                    <p>{mode}</p>
-                    <p>{remuneration}</p>
-                    <p>{methode}</p>
-                    <p>{offertype}</p>
+        <DialogBody className='bg-white' divider>
+          <p className='mx-auto mb-4 text-justify text-base text-gray-700'>
+            {offerDescription}
+          </p>
+        </DialogBody>
+        <DialogBody className='bg-white' divider>
+          <div className='mx-auto flex max-w-[40rem] flex-wrap gap-4 lg:flex-nowrap'>
+            <Timeline>
+              <TimelineItem className='h-28'>
+                <TimelineConnector className='!w-[78px]' />
+                <TimelineHeader className='relative rounded-xl border border-blue-gray-50 bg-white py-3 pl-4 pr-8 shadow-lg shadow-blue-gray-900/5'>
+                  <TimelineIcon className='p-3' variant='ghost'>
+                    <BellIcon className='h-5 w-5' />
+                  </TimelineIcon>
+                  <div className='flex flex-col gap-1'>
+                    <Typography variant='h6' color='blue-gray'>
+                      Ville
+                    </Typography>
+                    <Typography
+                      variant='small'
+                      color='gray'
+                      className='font-normal'
+                    >
+                      {localisation}
+                    </Typography>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className='border-t border-gray-200 bg-gray-100 px-6 py-4'>
-              <p className='text-sm text-gray-600'>
-                Date de début de stage:
-                {new Date(startDate).toLocaleDateString(undefined, {
-                  day: 'numeric',
-                  month: 'short',
-                  year: 'numeric',
-                })}
-              </p>
-            </div>
-            <div className='border-t border-gray-200 bg-gray-100 px-6 py-4'>
-              <p className='text-sm text-gray-600'>
-                Date de fin de stage:
-                {new Date(endDate).toLocaleDateString(undefined, {
-                  day: 'numeric',
-                  month: 'short',
-                  year: 'numeric',
-                })}
-              </p>
-            </div>
+                </TimelineHeader>
+              </TimelineItem>
+              <TimelineItem className='h-28'>
+                <TimelineConnector className='!w-[78px]' />
+                <TimelineHeader className='relative rounded-xl border border-blue-gray-50 bg-white py-3 pl-4 pr-8 shadow-lg shadow-blue-gray-900/5'>
+                  <TimelineIcon className='p-3' variant='ghost' color='red'>
+                    <ArchiveBoxIcon className='h-5 w-5' />
+                  </TimelineIcon>
+                  <div className='flex flex-col gap-1'>
+                    <Typography variant='h6' color='blue-gray'>
+                      Mode du stage
+                    </Typography>
+                    <Typography
+                      variant='small'
+                      color='gray'
+                      className='font-normal'
+                    >
+                      {mode}
+                    </Typography>
+                  </div>
+                </TimelineHeader>
+              </TimelineItem>
+              <TimelineItem className='h-28'>
+                <TimelineHeader className='relative rounded-xl border border-blue-gray-50 bg-white py-3 pl-4 pr-8 shadow-lg shadow-blue-gray-900/5'>
+                  <TimelineIcon className='p-3' variant='ghost' color='green'>
+                    <CurrencyDollarIcon className='h-5 w-5' />
+                  </TimelineIcon>
+                  <div className='flex flex-col gap-1'>
+                    <Typography variant='h6' color='blue-gray'>
+                      La rémunérations
+                    </Typography>
+                    <Typography
+                      variant='small'
+                      color='gray'
+                      className='font-normal'
+                    >
+                      {remuneration}
+                    </Typography>
+                  </div>
+                </TimelineHeader>
+              </TimelineItem>
+            </Timeline>
+            <Timeline>
+              <TimelineItem className='h-28'>
+                <TimelineConnector className='!w-[78px]' />
+                <TimelineHeader className='relative rounded-xl border border-blue-gray-50 bg-white py-3 pl-4 pr-8 shadow-lg shadow-blue-gray-900/5'>
+                  <TimelineIcon className='p-3' variant='ghost' color='green'>
+                    <CurrencyDollarIcon className='h-5 w-5' />
+                  </TimelineIcon>
+                  <div className='flex flex-col gap-1'>
+                    <Typography variant='h6' color='blue-gray'>
+                      Type du stage
+                    </Typography>
+                    <Typography
+                      variant='small'
+                      color='gray'
+                      className='font-normal'
+                    >
+                      {offertype}
+                    </Typography>
+                  </div>
+                </TimelineHeader>
+              </TimelineItem>
+              <TimelineItem className='h-28'>
+                <TimelineConnector className='!w-[78px]' />
+                <TimelineHeader className='relative rounded-xl border border-blue-gray-50 bg-white py-3 pl-4 pr-8 shadow-lg shadow-blue-gray-900/5'>
+                  <TimelineIcon className='p-3' variant='ghost' color='green'>
+                    <CurrencyDollarIcon className='h-5 w-5' />
+                  </TimelineIcon>
+                  <div className='flex flex-col gap-1'>
+                    <Typography variant='h6' color='blue-gray'>
+                      Date de début de stage
+                    </Typography>
+                    <Typography
+                      variant='small'
+                      color='gray'
+                      className='font-normal'
+                    >
+                      {new Date(startDate).toLocaleDateString(undefined, {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                      })}
+                    </Typography>
+                  </div>
+                </TimelineHeader>
+              </TimelineItem>
+              <TimelineItem className='h-28'>
+                <TimelineHeader className='relative rounded-xl border border-blue-gray-50 bg-white py-3 pl-4 pr-8 shadow-lg shadow-blue-gray-900/5'>
+                  <TimelineIcon className='p-3' variant='ghost' color='green'>
+                    <CurrencyDollarIcon className='h-5 w-5' />
+                  </TimelineIcon>
+                  <div className='flex flex-col gap-1'>
+                    <Typography variant='h6' color='blue-gray'>
+                      Date de début de stage
+                    </Typography>
+                    <Typography
+                      variant='small'
+                      color='gray'
+                      className='font-normal'
+                    >
+                      {new Date(startDate).toLocaleDateString(undefined, {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                      })}
+                    </Typography>
+                  </div>
+                </TimelineHeader>
+              </TimelineItem>
+            </Timeline>
           </div>
         </DialogBody>
-        <DialogFooter>
+        <DialogFooter className='bg-white'>
           <Button
             variant='text'
-            color='red'
+            color='green'
             onClick={() => handleOpen(null)}
             className='mr-1'
           >
@@ -119,12 +242,12 @@ export default function CompanyDialogPopUp({
           </Button>
           <Button
             variant='gradient'
-            color='green'
+            color='red'
             onClick={() => {
-              postuler(offer_id)
+              supprimer(offer_id)
             }}
           >
-            <span>Postuler</span>
+            <span>Supprimer</span>
           </Button>
           <Toaster />
         </DialogFooter>
