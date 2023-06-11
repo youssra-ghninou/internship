@@ -103,7 +103,8 @@ export default function CardOffer({
           localisation={lieu}
           mode={mode}
           remuneration={remuneration}
-          methode={type}
+          methode={method}
+          offertype={type}
           startDate={startDate}
           endDate={endDate}
           offer_id={offer_id}

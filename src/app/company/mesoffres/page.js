@@ -7,7 +7,7 @@ export default async function MesOffres() {
   const session = await getServerSession(authOptions)
   if (session) {
     return (
-      <div className='flex flex-col flex-wrap gap-2 py-2'>
+      <div className=''>
         <CompanyEveryOffers />
       </div>
     )

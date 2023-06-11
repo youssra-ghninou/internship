@@ -6,7 +6,7 @@ const nextConfig = {
       'lespetitesannoncesdemarine.files.wordpress.com',
       'images.unsplash.com',
       'source.unsplash.com',
-      'thequantuminsider.com',
+      'companieslogo.com',
     ],
   },
   experimental: {
