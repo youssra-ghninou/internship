@@ -11,7 +11,7 @@ export default function StatsCards({ offers, entreprises, canditatures }) {
 
         <div className='ml-4'>
           <h2 className='font-semibold'>
-            {offers} {offers === 1 ? 'Offre' : 'Offres'} disponible
+            {offers} {offers === 1 ? 'Offre disponible' : 'Offres disponibles'}
           </h2>
           <p className='mt-2 text-sm text-gray-500'>
             Dernière offre il y a 3 jours
@@ -28,7 +28,7 @@ export default function StatsCards({ offers, entreprises, canditatures }) {
           <h2 className='font-semibold'>
             {entreprises} {entreprises === 1 ? 'Entreprise' : 'Entreprises'}
           </h2>
-          <p className='mt-2 text-sm text-gray-500'>1 Entreprises par mois</p>
+          <p className='mt-2 text-sm text-gray-500'>1 Entreprise par mois</p>
         </div>
       </div>
       <div className='flex items-start rounded-xl bg-white p-4 shadow-lg'>
@@ -61,10 +61,8 @@ export default function StatsCards({ offers, entreprises, canditatures }) {
         </div>
 
         <div className='ml-4'>
-          <h2 className='font-semibold'>I still dont know</h2>
-          <p className='mt-2 text-sm text-gray-500'>
-            Last commented 8 days ago
-          </p>
+          <h2 className='font-semibold'>5 utilisateurs</h2>
+          <p className='mt-2 text-sm text-gray-500'>Il y a une heure</p>
         </div>
       </div>
     </div>

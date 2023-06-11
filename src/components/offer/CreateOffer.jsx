@@ -107,7 +107,7 @@ export default function CreateOfferForm() {
           />
           <Input
             variant='outlined'
-            label='Methode de travaille'
+            label='Méthode de travail'
             name='methode'
             value={offerData.methode}
             onChange={handleChange}
@@ -128,7 +128,7 @@ export default function CreateOfferForm() {
             label='Sélectionner le Mode'
           >
             <Option value='A distance'>A distance</Option>
-            <Option value='Hybrid'>Hybrid</Option>
+            <Option value='Hybrid'>Hybride</Option>
             <Option value='Présentiel'>Présentiel</Option>
           </Select>
           <Select
@@ -188,7 +188,7 @@ export default function CreateOfferForm() {
             type='submit'
             className='rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
           >
-            Create Offer
+            Publier Offre
           </button>
         </div>
       </form>

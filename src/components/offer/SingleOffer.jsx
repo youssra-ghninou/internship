@@ -68,7 +68,7 @@ export default function SingleOffers({ offer }) {
               Liste des candidats
             </Typography>
             <Typography color='gray' className='mt-1 font-normal'>
-              Ici vous trouvez les candidats qui on postulés à cet offre
+              Ici vous trouvez les candidats qui ont postulé à cet offre
             </Typography>
           </div>
           <div className='flex shrink-0 flex-col gap-2 sm:flex-row'>

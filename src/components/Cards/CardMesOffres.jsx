@@ -106,7 +106,7 @@ export default function CardMesOffer({
           startDate={startDate}
           endDate={endDate}
           offer_id={offer_id}
-          text={'Détailles'}
+          text={'Détails'}
           sizeValue={'xxl'}
           companytext={'Ouvrir'}
         />

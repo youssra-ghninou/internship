@@ -39,12 +39,12 @@ export default function SideBare({ children, base, name, profileimage, role }) {
   const pathname = usePathname()
   const profileMenuItems = [
     {
-      label: 'Mon Profile',
+      label: 'Mon Profil',
       icon: UserCircleIcon,
       link: JSON.stringify(base).replace(/"/g, '') + '/profile',
     },
     {
-      label: 'Éditer Profile',
+      label: 'Éditer Profil',
       icon: PencilIcon,
       link: JSON.stringify(base).replace(/"/g, '') + '/profile/edit',
     },
@@ -121,7 +121,7 @@ export default function SideBare({ children, base, name, profileimage, role }) {
           <Input
             color='white'
             icon={<MagnifyingGlassIcon className='h-5 w-5 text-white' />}
-            label='Search'
+            label='Rechercher'
           />
         </div>
         <List>

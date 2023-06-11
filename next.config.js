@@ -7,6 +7,7 @@ const nextConfig = {
       'images.unsplash.com',
       'source.unsplash.com',
       'companieslogo.com',
+      'encrypted-tbn0.gstatic.com',
     ],
   },
   experimental: {

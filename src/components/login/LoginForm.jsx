@@ -60,16 +60,16 @@ export default function LoginForm() {
               <div className='flex h-screen w-full items-center justify-center bg-white px-6 md:mx-auto md:w-1/2 md:max-w-md lg:max-w-full lg:px-6 xl:w-1/2 xl:px-12'>
                 <div className='h-100 w-full'>
                   <h1 className='mt-12 text-xl font-bold leading-tight md:text-2xl'>
-                    Veuillez vous connecter
+                    Se connecter
                   </h1>
                   <div>
                     <div className='text-md rounded p-2 text-center text-red-400'>
                       {error}
                     </div>
-                    <label className='block text-gray-700'>Email Address</label>
+                    <label className='block text-gray-700'>Adresse email</label>
                     <Field
                       name='email'
-                      aria-label='enter your email'
+                      aria-label='Entrer votre email'
                       aria-required='true'
                       type='text'
                       className='mt-2 w-full rounded-lg border bg-gray-200 px-4 py-3 focus:border-blue-500 focus:bg-white focus:outline-none'
@@ -79,11 +79,11 @@ export default function LoginForm() {
                     </div>
                   </div>
                   <div className='mt-4'>
-                    <label className='block text-gray-700'>Password</label>
+                    <label className='block text-gray-700'>Mot de passe</label>
 
                     <Field
                       name='password'
-                      aria-label='enter your password'
+                      aria-label='Entrer votre mot de passe'
                       aria-required='true'
                       type='password'
                       className='mt-2 w-full rounded-lg border bg-gray-200 px-4 py-3 focus:border-blue-500

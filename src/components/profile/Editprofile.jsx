@@ -152,7 +152,7 @@ export default function EditProfile({ data }) {
       <>
         <form className='gap-10 p-2' onSubmit={handleSubmit}>
           <div className=' text-[28px] font-semibold text-[#043CA7]'>
-            Modifier votre profile
+            Modifier votre profil
           </div>
           <div className='flex w-full flex-wrap items-center justify-center gap-3 pt-2 lg:justify-between'>
             <Input

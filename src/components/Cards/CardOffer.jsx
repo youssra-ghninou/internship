@@ -109,7 +109,7 @@ export default function CardOffer({
           endDate={endDate}
           offer_id={offer_id}
           VerifyProfile={MyProfile}
-          text={'Détailles'}
+          text={'Détails'}
           sizeValue={'xxl'}
         />
       </CardFooter>
