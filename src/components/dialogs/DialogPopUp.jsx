@@ -69,6 +69,7 @@ export default function DialogPopUp({
       }
     }
     startTransition(() => {
+      router.push('/enimiste/mescandidatures')
       router.refresh()
     })
   }

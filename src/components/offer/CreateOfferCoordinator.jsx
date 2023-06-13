@@ -66,7 +66,7 @@ export default function CreateOfferFormCoordinator() {
       toast.error('There was an error: ' + error)
     }
     startTransition(() => {
-      router.push('/company/mesoffres')
+      router.push('/')
       router.refresh()
     })
   }

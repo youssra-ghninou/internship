@@ -79,9 +79,7 @@ export default function CompanyDialogPopUpCoordinator({
           body: id,
         })
         toast.dismiss()
-        startTransition(() => {
-          router.refresh()
-        })
+
         if (response.ok) {
           toast.success('Vous avez archiver l’offre')
         } else {
@@ -91,6 +89,9 @@ export default function CompanyDialogPopUpCoordinator({
         toast.error('There was an error: ' + error)
       }
     }
+    startTransition(() => {
+      router.refresh()
+    })
   }
 
   return (
