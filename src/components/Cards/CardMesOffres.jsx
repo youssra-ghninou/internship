@@ -35,9 +35,9 @@ export default function CardMesOffer({
 }) {
   return (
     <Card className='z-0 flex w-full max-w-[24rem] justify-between shadow-lg'>
-      <CardHeader floated={false} color='blue-gray'>
+      <CardHeader floated={false} color='blue-gray relative h-[201px]'>
         <Image
-          className='mx-auto'
+          className='mx-auto h-[201px] object-fill'
           width={200}
           height={200}
           src={image ? image : '/enimlogo.png'}
