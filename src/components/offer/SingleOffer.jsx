@@ -3,7 +3,6 @@ import {
   ChevronUpDownIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
-import { PencilIcon } from '@heroicons/react/24/solid'
 import {
   Avatar,
   Button,
@@ -12,11 +11,10 @@ import {
   CardFooter,
   CardHeader,
   Chip,
-  IconButton,
   Input,
-  Tooltip,
   Typography,
 } from '@material-tailwind/react'
+import ViewProfilePopUp from '../dialogs/ViewProfilePopUp'
 const currentYear = new Date().getFullYear()
 
 const TABLE_HEAD = [
@@ -27,44 +25,6 @@ const TABLE_HEAD = [
   'Changer Status',
 ]
 
-const TABLE_ROWS = [
-  {
-    img: 'https://internship-hazel.vercel.app/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTtfDW5UMMpJ83azX3k6CPbNGybJzjFk-pHh3MHMa%3Ds400-c&w=128&q=75',
-    name: 'Ghninou Youssra',
-    email: 'ghninou.youssra@enim.ac.ma',
-    job: 'Élève Ingénieur',
-    org: 'ENIM',
-    status: 'Accepté',
-    anneetude: '1 ere année',
-  },
-  {
-    img: 'https://internship-hazel.vercel.app/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTtczWCyC9IOL4_e1C1BjjVh7gSq-uAakDSa4506W%3Ds400-c&w=128&q=75',
-    name: 'Anouar Aimade',
-    email: 'anouar.aimade@gmail.com',
-    job: 'Élève Ingénieur',
-    org: 'ENIM',
-    status: 'Rejeté',
-    anneetude: '1 ere année',
-  },
-  {
-    img: 'https://internship-hazel.vercel.app/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTtfDW5UMMpJ83azX3k6CPbNGybJzjFk-pHh3MHMa%3Ds400-c&w=128&q=75',
-    name: 'Doulfoukar Nada',
-    email: 'doulfoukar.nada@enim.ac.ma',
-    job: 'Élève Ingénieur',
-    org: 'ENIM',
-    status: 'Rejete',
-    anneetude: '2 eme année',
-  },
-  {
-    img: 'https://internship-hazel.vercel.app/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTtfDW5UMMpJ83azX3k6CPbNGybJzjFk-pHh3MHMa%3Ds400-c&w=128&q=75',
-    name: 'Chichaoui Hamza',
-    email: 'chichaoui.hamza@enim.ac.ma',
-    job: 'Élève Ingénieur',
-    org: 'ENIM',
-    status: 'Accepté',
-    anneetude: '3 eme année',
-  },
-]
 export default function SingleOffers({ allCandidats }) {
   return (
     <Card className='h-full w-full'>
@@ -116,7 +76,7 @@ export default function SingleOffers({ allCandidats }) {
                     color='blue-gray'
                     className='flex items-center justify-between gap-2 font-normal leading-none opacity-70'
                   >
-                    {head}{' '}
+                    {head}
                     {index !== TABLE_HEAD.length - 1 && (
                       <ChevronUpDownIcon strokeWidth={2} className='h-4 w-4' />
                     )}
@@ -128,19 +88,10 @@ export default function SingleOffers({ allCandidats }) {
           <tbody>
             {allCandidats.map(
               (
-                {
-                  student: {
-                    name,
-                    image,
-                    role,
-                    profile: { titre },
-                  },
-                  status,
-                  email,
-                },
+                { student: { name, image, role, profile }, status, email, id },
                 index,
               ) => {
-                const isLast = index === TABLE_ROWS.length - 1
+                const isLast = index === allCandidats.length - 1
                 const classes = isLast
                   ? 'p-4'
                   : 'p-4 border-b border-blue-gray-50'
@@ -175,7 +126,7 @@ export default function SingleOffers({ allCandidats }) {
                           color='blue-gray'
                           className='font-normal'
                         >
-                          {titre}
+                          {profile.titre}
                         </Typography>
                         <Typography
                           variant='small'
@@ -218,11 +169,7 @@ export default function SingleOffers({ allCandidats }) {
                       </Typography>
                     </td>
                     <td className={classes}>
-                      <Tooltip content='Changer statut'>
-                        <IconButton variant='text' color='blue-gray'>
-                          <PencilIcon className='h-4 w-4' />
-                        </IconButton>
-                      </Tooltip>
+                      <ViewProfilePopUp candidatureId={id} profile={profile} />
                     </td>
                   </tr>
                 )
