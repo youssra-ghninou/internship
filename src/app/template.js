@@ -3,6 +3,7 @@ import LoginForm from '@/components/login/LoginForm'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getUser } from '@@/queries'
 import { getServerSession } from 'next-auth'
+export const dynamicParams = true
 
 export default async function Template({ children }) {
   const session = await getServerSession(authOptions)

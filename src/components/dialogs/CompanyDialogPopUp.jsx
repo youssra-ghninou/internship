@@ -69,10 +69,7 @@ export default function CompanyDialogPopUp({
   return (
     <Fragment>
       <div className='mb-3 flex w-full gap-3'>
-        <Link
-          href={'/company/mesoffres/' + offer_id}
-          className='w-full text-white'
-        >
+        <Link href={'/company/' + offer_id} className='w-full text-white'>
           <Button fullWidth className='flex items-center justify-center gap-3'>
             <InformationCircleIcon strokeWidth={2} className='h-5 w-5' />
             {companytext}

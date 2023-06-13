@@ -9,8 +9,6 @@ export const metadata = {
   },
 }
 
-export const dynamicParams = false
-
 export default async function RootLayout({ children }) {
   return (
     <html lang='fr'>

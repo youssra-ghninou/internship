@@ -17,8 +17,15 @@ import {
   Tooltip,
   Typography,
 } from '@material-tailwind/react'
+const currentYear = new Date().getFullYear()
 
-const TABLE_HEAD = ['Étudiant', 'Titre', 'Status', 'Année d’Étude', '']
+const TABLE_HEAD = [
+  'Étudiant',
+  'Titre',
+  'Status',
+  'Année d’Étude',
+  'Changer Status',
+]
 
 const TABLE_ROWS = [
   {
@@ -58,7 +65,7 @@ const TABLE_ROWS = [
     anneetude: '3 eme année',
   },
 ]
-export default function SingleOffers({ offer }) {
+export default function SingleOffers({ allCandidats }) {
   return (
     <Card className='h-full w-full'>
       <CardHeader floated={false} shadow={false} className='rounded-none'>
@@ -111,18 +118,30 @@ export default function SingleOffers({ offer }) {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
-              ({ img, name, email, job, org, status, anneetude }, index) => {
+            {allCandidats.map(
+              (
+                {
+                  student: {
+                    name,
+                    image,
+                    role,
+                    profile: { titre },
+                  },
+                  status,
+                  email,
+                },
+                index,
+              ) => {
                 const isLast = index === TABLE_ROWS.length - 1
                 const classes = isLast
                   ? 'p-4'
                   : 'p-4 border-b border-blue-gray-50'
 
                 return (
-                  <tr key={name}>
+                  <tr className='uppercase' key={name}>
                     <td className={classes}>
                       <div className='flex items-center gap-3'>
-                        <Avatar src={img} alt={name} size='sm' />
+                        <Avatar src={image} alt={name} size='sm' />
                         <div className='flex flex-col'>
                           <Typography
                             variant='small'
@@ -148,14 +167,14 @@ export default function SingleOffers({ offer }) {
                           color='blue-gray'
                           className='font-normal'
                         >
-                          {job}
+                          {titre}
                         </Typography>
                         <Typography
                           variant='small'
                           color='blue-gray'
                           className='font-normal opacity-70'
                         >
-                          {org}
+                          ENSMR
                         </Typography>
                       </div>
                     </td>
@@ -187,7 +206,7 @@ export default function SingleOffers({ offer }) {
                         color='blue-gray'
                         className='font-normal'
                       >
-                        {anneetude}
+                        {currentYear}-{currentYear - 1}
                       </Typography>
                     </td>
                     <td className={classes}>

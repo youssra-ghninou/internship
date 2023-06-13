@@ -85,11 +85,6 @@ export default function SideBare({ children, base, name, profileimage, role }) {
       icon: <PresentationChartBarIcon />,
     },
     {
-      href: JSON.stringify(base).replace(/"/g, '') + '/mesoffres',
-      title: 'Mes Offres',
-      icon: <InboxIcon />,
-    },
-    {
       href: JSON.stringify(base).replace(/"/g, '') + '/createoffer',
       title: 'Publier une offre',
       icon: <RocketLaunchIcon />,
