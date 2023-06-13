@@ -32,12 +32,14 @@ export default function CardOffer({
   lieu,
   offer_id,
   MyProfile,
+  role,
+  lien,
 }) {
   return (
     <Card className='z-0 flex w-full max-w-[24rem] justify-between shadow-lg'>
-      <CardHeader floated={false} color='blue-gray'>
+      <CardHeader floated={false} color='blue-gray relative h-[201px]'>
         <Image
-          className='mx-auto'
+          className='mx-auto h-[201px] object-fill'
           width={200}
           height={200}
           src={image ? image : '/enimlogo.png'}
@@ -111,6 +113,8 @@ export default function CardOffer({
           VerifyProfile={MyProfile}
           text={'Détails'}
           sizeValue={'xxl'}
+          lien={lien}
+          role={role}
         />
       </CardFooter>
     </Card>

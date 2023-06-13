@@ -139,9 +139,7 @@ export default function CompanyDialogPopUp({
         className='w-screen bg-white'
         handler={handleOpen}
       >
-        <DialogHeader>
-          {offerTitle}:{status}
-        </DialogHeader>
+        <DialogHeader>{offerTitle}</DialogHeader>
         <DialogBody className='bg-white' divider>
           <p className='mx-auto mb-4 text-justify text-base text-gray-700'>
             {offerDescription}

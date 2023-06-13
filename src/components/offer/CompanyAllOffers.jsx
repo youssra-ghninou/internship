@@ -1,6 +1,5 @@
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
-import Link from 'next/link'
 import { getCompanyOffers, getUser } from '../../../lib/queries'
 import CardMesOffer from '../Cards/CardMesOffres'
 
@@ -11,9 +10,9 @@ export default async function CompanyEveryOffers() {
   return (
     <div className='flex w-fit flex-col gap-5 rounded-lg bg-white p-4'>
       <div className='flex items-center justify-between'>
-        <Link href='/offers' className='text-2xl font-bold text-[#043CA7]'>
+        <div className='text-2xl font-bold text-[#043CA7]'>
           Offres publiées :
-        </Link>
+        </div>
       </div>
       <div className='flex flex-wrap gap-3 pb-2'>
         {offers.map(

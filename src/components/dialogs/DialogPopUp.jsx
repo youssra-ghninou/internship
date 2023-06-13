@@ -6,6 +6,7 @@ import {
   CurrencyDollarIcon,
   HomeModernIcon,
   InformationCircleIcon,
+  LinkIcon,
 } from '@heroicons/react/24/solid'
 import {
   Button,
@@ -20,6 +21,7 @@ import {
   TimelineItem,
   Typography,
 } from '@material-tailwind/react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Fragment, startTransition, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
@@ -39,6 +41,8 @@ export default function DialogPopUp({
   offertype,
   offer_id,
   VerifyProfile,
+  lien,
+  role,
 }) {
   const [size, setSize] = useState(null)
 
@@ -255,15 +259,25 @@ export default function DialogPopUp({
             >
               <span>Annuler</span>
             </Button>
-            <Button
-              variant='gradient'
-              color='green'
-              onClick={() => {
-                postuler(offer_id)
-              }}
-            >
-              <span>Postuler</span>
-            </Button>
+            {role === 'COORDINATOR' ? (
+              <Link
+                href={lien}
+                className='flex items-center rounded-lg bg-blue-500 px-3 py-1 text-white'
+              >
+                <span>Postuler</span>
+                <LinkIcon strokeWidth={2} className='h-5 w-5' />
+              </Link>
+            ) : (
+              <Button
+                variant='gradient'
+                color='green'
+                onClick={() => {
+                  postuler(offer_id)
+                }}
+              >
+                <span>Postuler</span>
+              </Button>
+            )}
             <Toaster />
           </DialogFooter>
         </Dialog>

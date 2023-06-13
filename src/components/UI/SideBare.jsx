@@ -10,7 +10,6 @@ import {
 } from '@heroicons/react/24/outline'
 import {
   Cog6ToothIcon,
-  InboxIcon,
   PowerIcon,
   PresentationChartBarIcon,
 } from '@heroicons/react/24/solid'
@@ -68,11 +67,6 @@ export default function SideBare({ children, base, name, profileimage, role }) {
       href: JSON.stringify(base).replace(/"/g, ''),
       title: 'Accueil',
       icon: <PresentationChartBarIcon />,
-    },
-    {
-      href: '/offers',
-      title: 'Offres de stage',
-      icon: <InboxIcon />,
     },
     {
       href: JSON.stringify(base).replace(/"/g, '') + '/mescandidatures',
