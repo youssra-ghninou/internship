@@ -49,14 +49,14 @@ export default function DialogPopUp({
   const postuler = async (id) => {
     if (window.confirm('Voulez vous postuler ?')) {
       try {
-        toast.loading('Waiting...')
+        toast.loading('Veuillez patienter...')
         const response = await fetch('/api/postuler', {
           method: 'POST',
           body: id,
         })
         toast.dismiss()
         if (response.ok) {
-          toast.success('Vous avez postuler')
+          toast.success('Vous avez postulé avec succès ')
         } else {
           toast.error('There was an error!' + response)
         }

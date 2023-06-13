@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { startTransition, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 
-export default function CreateOfferForm() {
+export default function CreateOfferFormCoordinator() {
   const router = useRouter()
   const [mode, setMode] = useState('')
   const [type, setType] = useState('')
@@ -151,8 +151,10 @@ export default function CreateOfferForm() {
             variant='outlined'
             label='Lien vers l’offre'
             name='lien'
+            type='link'
             value={offerData.lien}
             onChange={handleChange}
+            required
           />
         </div>
         <Textarea

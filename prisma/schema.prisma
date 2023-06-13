@@ -73,7 +73,7 @@ model Application {
   studentId     String
   student       User      @relation(fields: [studentId], references: [id])
   offerId       String
-  offer         Offer     @relation(fields: [offerId], references: [id])
+  offer         Offer     @relation(fields: [offerId], references: [id], onDelete: Cascade)
   status        String?
   interviewDate DateTime?
   agreementUrl  String?

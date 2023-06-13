@@ -218,7 +218,7 @@ export default function Candidat() {
                       </Typography>
                     </td>
                     <td className={classes}>
-                      <Tooltip content='Edit User'>
+                      <Tooltip content='Changer statut'>
                         <IconButton variant='text' color='blue-gray'>
                           <PencilIcon className='h-4 w-4' />
                         </IconButton>

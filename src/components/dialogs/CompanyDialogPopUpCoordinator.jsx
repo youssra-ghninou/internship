@@ -25,13 +25,13 @@ import { useRouter } from 'next/navigation'
 import { Fragment, startTransition, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
 
-export default function CompanyDialogPopUp({
+export default function CompanyDialogPopUpCoordinator({
   text,
   offerTitle,
   offerDescription,
   company,
   author,
-  status,
+  endDate,
   startDate,
   localisation,
   mode,
@@ -39,6 +39,7 @@ export default function CompanyDialogPopUp({
   companytext,
   offertype,
   offer_id,
+  externallink,
 }) {
   const [size, setSize] = useState(null)
 
@@ -78,6 +79,9 @@ export default function CompanyDialogPopUp({
           body: id,
         })
         toast.dismiss()
+        startTransition(() => {
+          router.refresh()
+        })
         if (response.ok) {
           toast.success('Vous avez archiver l’offre')
         } else {
@@ -86,39 +90,13 @@ export default function CompanyDialogPopUp({
       } catch (error) {
         toast.error('There was an error: ' + error)
       }
-      startTransition(() => {
-        router.push('/')
-      })
-    }
-  }
-
-  const republierOffre = async (id) => {
-    if (window.confirm('Voulez vous republier cette offre ?')) {
-      try {
-        toast.loading('Veuillez patienter...')
-        const response = await fetch('/api/republierOffre', {
-          method: 'POST',
-          body: id,
-        })
-        toast.dismiss()
-        if (response.ok) {
-          toast.success('Vous avez republier l’offre')
-        } else {
-          toast.error('There was an error!' + response)
-        }
-      } catch (error) {
-        toast.error('There was an error: ' + error)
-      }
-      startTransition(() => {
-        router.push('/')
-      })
     }
   }
 
   return (
     <Fragment>
       <div className='mb-3 flex w-full gap-3'>
-        <Link href={'/company/' + offer_id} className='w-full text-white'>
+        <Link href={externallink} className='w-full text-white'>
           <Button fullWidth className='flex items-center justify-center gap-3'>
             <InformationCircleIcon strokeWidth={2} className='h-5 w-5' />
             {companytext}
@@ -139,9 +117,7 @@ export default function CompanyDialogPopUp({
         className='w-screen bg-white'
         handler={handleOpen}
       >
-        <DialogHeader>
-          {offerTitle}:{status}
-        </DialogHeader>
+        <DialogHeader>{offerTitle}</DialogHeader>
         <DialogBody className='bg-white' divider>
           <p className='mx-auto mb-4 text-justify text-base text-gray-700'>
             {offerDescription}
@@ -309,29 +285,16 @@ export default function CompanyDialogPopUp({
           >
             <span>Annuler</span>
           </Button>
-          {status === 'ARCHIVED' ? (
-            <Button
-              variant='gradient'
-              color='blue'
-              className='mr-1'
-              onClick={() => {
-                republierOffre(offer_id)
-              }}
-            >
-              <span>republier</span>
-            </Button>
-          ) : (
-            <Button
-              variant='gradient'
-              color='blue'
-              className='mr-1'
-              onClick={() => {
-                archiverOffre(offer_id)
-              }}
-            >
-              <span>archiver</span>
-            </Button>
-          )}
+          <Button
+            variant='gradient'
+            color='blue'
+            className='mr-1'
+            onClick={() => {
+              archiverOffre(offer_id)
+            }}
+          >
+            <span>archiver</span>
+          </Button>
           <Button
             variant='gradient'
             color='red'

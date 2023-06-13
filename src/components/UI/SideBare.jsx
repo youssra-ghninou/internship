@@ -55,6 +55,14 @@ export default function SideBare({ children, base, name, profileimage, role }) {
     },
   ]
 
+  const profileMenuItemsOther = [
+    {
+      label: 'Aide',
+      icon: LifebuoyIcon,
+      link: JSON.stringify(base).replace(/"/g, '') + '/profile',
+    },
+  ]
+
   const menuItemsEnimiste = [
     {
       href: JSON.stringify(base).replace(/"/g, ''),
@@ -95,6 +103,25 @@ export default function SideBare({ children, base, name, profileimage, role }) {
       icon: <Cog6ToothIcon />,
     },
   ]
+
+  const menuItemsCoordinator = [
+    {
+      href: JSON.stringify(base).replace(/"/g, ''),
+      title: 'Accueil',
+      icon: <PresentationChartBarIcon />,
+    },
+    {
+      href: JSON.stringify(base).replace(/"/g, '') + '/createoffer',
+      title: 'Publier une offre',
+      icon: <RocketLaunchIcon />,
+    },
+    {
+      href: JSON.stringify(base).replace(/"/g, '') + '/',
+      title: 'Paramètre',
+      icon: <Cog6ToothIcon />,
+    },
+  ]
+
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value)
   }
@@ -148,27 +175,50 @@ export default function SideBare({ children, base, name, profileimage, role }) {
             </ListItem>
             <AccordionBody className='py-1'>
               <List className='p-0'>
-                {profileMenuItems.map(({ label, icon, link }) => {
-                  return (
-                    <Link key={label} href={link}>
-                      <ListItem className='text-white'>
-                        <ListItemPrefix>
-                          {React.createElement(icon, {
-                            className: 'h-5 w-5',
-                            strokeWidth: 2,
-                          })}
-                        </ListItemPrefix>
-                        <Typography
-                          as='span'
-                          variant='small'
-                          className='font-normal'
-                        >
-                          {label}
-                        </Typography>
-                      </ListItem>
-                    </Link>
-                  )
-                })}
+                {role != 'ENIMISTE' &&
+                  profileMenuItemsOther.map(({ label, icon, link }) => {
+                    return (
+                      <Link key={label} href={link}>
+                        <ListItem className='text-white'>
+                          <ListItemPrefix>
+                            {React.createElement(icon, {
+                              className: 'h-5 w-5',
+                              strokeWidth: 2,
+                            })}
+                          </ListItemPrefix>
+                          <Typography
+                            as='span'
+                            variant='small'
+                            className='font-normal'
+                          >
+                            {label}
+                          </Typography>
+                        </ListItem>
+                      </Link>
+                    )
+                  })}
+                {role === 'ENIMISTE' &&
+                  profileMenuItems.map(({ label, icon, link }) => {
+                    return (
+                      <Link key={label} href={link}>
+                        <ListItem className='text-white'>
+                          <ListItemPrefix>
+                            {React.createElement(icon, {
+                              className: 'h-5 w-5',
+                              strokeWidth: 2,
+                            })}
+                          </ListItemPrefix>
+                          <Typography
+                            as='span'
+                            variant='small'
+                            className='font-normal'
+                          >
+                            {label}
+                          </Typography>
+                        </ListItem>
+                      </Link>
+                    )
+                  })}
               </List>
             </AccordionBody>
           </Accordion>
@@ -188,6 +238,19 @@ export default function SideBare({ children, base, name, profileimage, role }) {
             })}
           {role === 'ENIMISTE' &&
             menuItemsEnimiste.map(({ href, title, icon }, key) => {
+              return (
+                <Link key={title} href={href}>
+                  <ListItem className='text-white'>
+                    <ListItemPrefix className='h-5 w-5 text-white'>
+                      {icon}
+                    </ListItemPrefix>
+                    {title}
+                  </ListItem>
+                </Link>
+              )
+            })}
+          {role === 'COORDINATOR' &&
+            menuItemsCoordinator.map(({ href, title, icon }, key) => {
               return (
                 <Link key={title} href={href}>
                   <ListItem className='text-white'>

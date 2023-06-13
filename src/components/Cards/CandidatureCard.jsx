@@ -37,14 +37,14 @@ export default function CandidatureCard({
   const deletePost = async (id) => {
     if (window.confirm('Retirer votre candidature ?')) {
       try {
-        toast.loading('Waiting...')
+        toast.loading('Veuillez patienter...')
         const response = await fetch('/api/deleteapplication', {
           method: 'POST',
           body: id,
         })
         toast.dismiss()
         if (response.ok) {
-          toast.success('Successfully deleted!')
+          toast.success('Candidature Supprimée avec succès')
         } else {
           toast.error('There was an error!' + response)
         }
@@ -63,7 +63,7 @@ export default function CandidatureCard({
           className='mx-auto'
           width={200}
           height={200}
-          src={image}
+          src={image ? image : '/enimlogo.png'}
           alt={title}
         />
         <div className='to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 ' />

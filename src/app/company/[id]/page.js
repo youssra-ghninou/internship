@@ -11,6 +11,5 @@ export async function generateStaticParams() {
 export default async function OfferDetails({ params }) {
   const { id } = params
   const candidats = await getCandidats(id)
-  console.log(candidats)
   return <SingleOffers allCandidats={candidats} />
 }

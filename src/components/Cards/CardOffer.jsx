@@ -40,7 +40,7 @@ export default function CardOffer({
           className='mx-auto'
           width={200}
           height={200}
-          src={image}
+          src={image ? image : '/enimlogo.png'}
           alt={title}
         />
         <div className='to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 ' />

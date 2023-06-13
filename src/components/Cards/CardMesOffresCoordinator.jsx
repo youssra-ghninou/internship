@@ -14,9 +14,9 @@ import {
 } from '@material-tailwind/react'
 import Image from 'next/image'
 import LinesEllipsis from 'react-lines-ellipsis'
-import CompanyDialogPopUp from '../dialogs/CompanyDialogPopUp'
+import CompanyDialogPopUpCoordinator from '../dialogs/CompanyDialogPopUpCoordinator'
 
-export default function CardMesOffer({
+export default function CardMesOfferCoordinator({
   title,
   image,
   description,
@@ -31,7 +31,7 @@ export default function CardMesOffer({
   startDate,
   lieu,
   offer_id,
-  status,
+  lien,
 }) {
   return (
     <Card className='z-0 flex w-full max-w-[24rem] justify-between shadow-lg'>
@@ -96,22 +96,21 @@ export default function CardMesOffer({
         </div>
       </CardBody>
       <CardFooter className='flex w-full'>
-        <CompanyDialogPopUp
+        <CompanyDialogPopUpCoordinator
           offerTitle={title}
           offerDescription={description}
           author={author}
           localisation={lieu}
           mode={mode}
           remuneration={remuneration}
-          methode={type}
+          offertype={type}
           startDate={startDate}
           endDate={endDate}
           offer_id={offer_id}
           text={'Détails'}
           sizeValue={'xxl'}
           companytext={'Ouvrir'}
-          offertype={type}
-          status={status}
+          externallink={lien}
         />
       </CardFooter>
     </Card>

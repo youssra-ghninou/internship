@@ -3,7 +3,7 @@ import {
   ChevronUpDownIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
-import { PencilIcon, UserPlusIcon } from '@heroicons/react/24/solid'
+import { PencilIcon } from '@heroicons/react/24/solid'
 import {
   Avatar,
   Button,
@@ -72,17 +72,25 @@ export default function SingleOffers({ allCandidats }) {
         <div className='mb-8 flex items-center justify-between gap-8'>
           <div>
             <Typography variant='h5' color='blue-gray'>
-              Liste des candidats
+              Liste des candidats pour l’offre : {allCandidats[0]?.offer.title}
             </Typography>
             <Typography color='gray' className='mt-1 font-normal'>
               Ici vous trouvez les candidats qui ont postulé à cet offre
             </Typography>
           </div>
           <div className='flex shrink-0 flex-col gap-2 sm:flex-row'>
-            <Button className='flex items-center gap-3' color='blue' size='sm'>
-              <UserPlusIcon strokeWidth={2} className='h-4 w-4' /> Sélectionner
-              candidat
-            </Button>
+            <Chip
+              variant='ghost'
+              size='sm'
+              value={
+                allCandidats[0]?.offer.status === 'ACTIVE'
+                  ? 'Statut de l’offre : Active'
+                  : 'Statut de l’offre : Archivé'
+              }
+              color={
+                allCandidats[0]?.offer.status === 'ACTIVE' ? 'green' : 'red'
+              }
+            />
           </div>
         </div>
         <div className='flex flex-col items-center justify-between gap-4 md:flex-row'>
@@ -210,7 +218,7 @@ export default function SingleOffers({ allCandidats }) {
                       </Typography>
                     </td>
                     <td className={classes}>
-                      <Tooltip content='Edit User'>
+                      <Tooltip content='Changer statut'>
                         <IconButton variant='text' color='blue-gray'>
                           <PencilIcon className='h-4 w-4' />
                         </IconButton>

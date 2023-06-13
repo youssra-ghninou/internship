@@ -2,9 +2,9 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 import { getCompanyOffers, getUser } from '../../../lib/queries'
-import CardMesOffer from '../Cards/CardMesOffres'
+import CardMesOfferCoordinator from '../Cards/CardMesOffresCoordinator'
 
-export default async function CompanyEveryOffers() {
+export default async function CoordinatorEveryOffers() {
   const session = await getServerSession(authOptions)
   const user = await getUser(session.user.email)
   const offers = await getCompanyOffers(user.id)
@@ -30,11 +30,11 @@ export default async function CompanyEveryOffers() {
             author,
             startDate,
             endDate,
-            status,
+            link,
             _count: { applications },
           }) => (
             <div className='' key={id}>
-              <CardMesOffer
+              <CardMesOfferCoordinator
                 image={company.image}
                 title={title}
                 company={company.name}
@@ -49,7 +49,7 @@ export default async function CompanyEveryOffers() {
                 startDate={startDate}
                 endDate={endDate}
                 offer_id={id}
-                status={status}
+                lien={link}
               />
             </div>
           ),
