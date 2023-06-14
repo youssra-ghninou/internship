@@ -31,6 +31,7 @@ export default function CompanyDialogPopUp({
   offerDescription,
   company,
   author,
+  endDate,
   status,
   startDate,
   localisation,
@@ -279,14 +280,14 @@ export default function CompanyDialogPopUp({
                   </TimelineIcon>
                   <div className='flex flex-col gap-1'>
                     <Typography variant='h6' color='blue-gray'>
-                      Date de début de stage
+                      Date de fin de stage
                     </Typography>
                     <Typography
                       variant='small'
                       color='gray'
                       className='font-normal'
                     >
-                      {new Date(startDate).toLocaleDateString(undefined, {
+                      {new Date(endDate).toLocaleDateString(undefined, {
                         day: 'numeric',
                         month: 'short',
                         year: 'numeric',

@@ -35,6 +35,7 @@ export default function CompanyDialogPopUpCoordinator({
   startDate,
   localisation,
   mode,
+  status,
   remuneration,
   companytext,
   offertype,
@@ -91,6 +92,29 @@ export default function CompanyDialogPopUpCoordinator({
     }
     startTransition(() => {
       router.refresh()
+    })
+  }
+
+  const republierOffre = async (id) => {
+    if (window.confirm('Voulez vous republier cette offre ?')) {
+      try {
+        toast.loading('Veuillez patienter...')
+        const response = await fetch('/api/republierOffre', {
+          method: 'POST',
+          body: id,
+        })
+        toast.dismiss()
+        if (response.ok) {
+          toast.success('Vous avez republier l’offre')
+        } else {
+          toast.error('There was an error!' + response)
+        }
+      } catch (error) {
+        toast.error('There was an error: ' + error)
+      }
+    }
+    startTransition(() => {
+      router.push('/')
     })
   }
 
@@ -258,14 +282,14 @@ export default function CompanyDialogPopUpCoordinator({
                   </TimelineIcon>
                   <div className='flex flex-col gap-1'>
                     <Typography variant='h6' color='blue-gray'>
-                      Date de début de stage
+                      Date de fin de stage
                     </Typography>
                     <Typography
                       variant='small'
                       color='gray'
                       className='font-normal'
                     >
-                      {new Date(startDate).toLocaleDateString(undefined, {
+                      {new Date(endDate).toLocaleDateString(undefined, {
                         day: 'numeric',
                         month: 'short',
                         year: 'numeric',
@@ -286,16 +310,29 @@ export default function CompanyDialogPopUpCoordinator({
           >
             <span>Annuler</span>
           </Button>
-          <Button
-            variant='gradient'
-            color='blue'
-            className='mr-1'
-            onClick={() => {
-              archiverOffre(offer_id)
-            }}
-          >
-            <span>archiver</span>
-          </Button>
+          {status === 'ARCHIVED' ? (
+            <Button
+              variant='gradient'
+              color='blue'
+              className='mr-1'
+              onClick={() => {
+                republierOffre(offer_id)
+              }}
+            >
+              <span>republier</span>
+            </Button>
+          ) : (
+            <Button
+              variant='gradient'
+              color='blue'
+              className='mr-1'
+              onClick={() => {
+                archiverOffre(offer_id)
+              }}
+            >
+              <span>archiver</span>
+            </Button>
+          )}
           <Button
             variant='gradient'
             color='red'

@@ -1,7 +1,12 @@
 'use client'
 import { RocketLaunchIcon, UserCircleIcon } from '@heroicons/react/24/outline'
 import { InboxIcon } from '@heroicons/react/24/solid'
-export default function StatsCards({ offers, entreprises, canditatures }) {
+export default function StatsCards({
+  offers,
+  entreprises,
+  canditatures,
+  users,
+}) {
   return (
     <div className='mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
       <div className='flex items-start rounded-xl bg-white p-4 shadow-lg'>
@@ -61,7 +66,7 @@ export default function StatsCards({ offers, entreprises, canditatures }) {
         </div>
 
         <div className='ml-4'>
-          <h2 className='font-semibold'>5 utilisateurs</h2>
+          <h2 className='font-semibold'>{users} utilisateurs</h2>
           <p className='mt-2 text-sm text-gray-500'>Il y a une heure</p>
         </div>
       </div>

@@ -54,7 +54,7 @@ export default function EditProfile({ data }) {
           toast.success('Vous avez mis a jour votre profile!')
         } else {
           toast.error(
-            'Une erreur est produite lors de la modification de votre profile, veuillez ressayer kjhkjh!',
+            'Une erreur est produite lors de la modification de votre profile, veuillez ressayer!',
           )
         }
       } else {

@@ -32,6 +32,7 @@ export default function CardMesOfferCoordinator({
   lieu,
   offer_id,
   lien,
+  status,
 }) {
   return (
     <Card className='z-0 flex w-full max-w-[24rem] justify-between shadow-lg'>
@@ -111,6 +112,7 @@ export default function CardMesOfferCoordinator({
           sizeValue={'xxl'}
           companytext={'Ouvrir'}
           externallink={lien}
+          status={status}
         />
       </CardFooter>
     </Card>

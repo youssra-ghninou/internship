@@ -29,6 +29,7 @@ export default async function CoordinatorEveryOffers() {
             author,
             startDate,
             endDate,
+            status,
             link,
             _count: { applications },
           }) => (
@@ -49,6 +50,7 @@ export default async function CoordinatorEveryOffers() {
                 endDate={endDate}
                 offer_id={id}
                 lien={link}
+                status={status}
               />
             </div>
           ),

@@ -5,6 +5,7 @@ import {
   CountCandidatures,
   CountEntreprises,
   CountOffers,
+  CountUsers,
   getUser,
 } from '@@/queries'
 import { getServerSession } from 'next-auth'
@@ -15,6 +16,7 @@ export default async function Enimiste() {
   const totaloffers = await CountOffers(user.id)
   const totalEntreprises = await CountEntreprises()
   const totalCandidatures = await CountCandidatures(user.id)
+  const totalUsers = await CountUsers()
 
   return (
     <div className='flex flex-col gap-5'>
@@ -22,6 +24,7 @@ export default async function Enimiste() {
         offers={totaloffers}
         entreprises={totalEntreprises}
         canditatures={totalCandidatures}
+        users={totalUsers}
       />
       <AllOffers />
     </div>

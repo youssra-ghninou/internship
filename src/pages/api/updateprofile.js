@@ -1,47 +1,38 @@
 import prisma from '@@/prisma'
-import { getUser } from '@@/queries'
+import { getCopetences, getUser } from '@@/queries'
 import { getSession } from 'next-auth/react'
 
 export default async function handler(req, res) {
   const session = await getSession({ req })
   const currentuser = await getUser(session.user.email)
+  const competenceUnique = await getCopetences(currentuser.profile.profileId)
 
   if (req.method === 'POST') {
     try {
-      const {
-        titre,
-        adresse,
-        telephone,
-        siteWeb,
-        resume,
-        education,
-        experience,
-        competences,
-      } = req.body
-      // await prisma.profile.delete({
-      //   where: {
-      //     profileId: currentuser.profile.profileId,
-      //   },
-      // })
+      const { titre, adresse, telephone, siteWeb, resume } = req.body
 
-      const deleted = await prisma.profile.update({
-        where: {
+      const competences = req.body.competences.map((competence) => {
+        return {
+          ...competence,
           profileId: currentuser.profile.profileId,
-        },
-        data: {
-          education: {
-            deleteMany: { profileId: currentuser.profile.profileId },
-          },
-          experience: {
-            deleteMany: { profileId: currentuser.profile.profileId },
-          },
-          competences: {
-            deleteMany: { profileId: currentuser.profile.profileId },
-          },
-        },
+        }
       })
 
-      const result = await prisma.profile.upsert({
+      const educations = req.body.education.map((education) => {
+        return {
+          ...education,
+          profileId: currentuser.profile.profileId,
+        }
+      })
+
+      const experiences = req.body.experience.map((experience) => {
+        return {
+          ...experience,
+          profileId: currentuser.profile.profileId,
+        }
+      })
+
+      const result = await prisma.profile.update({
         where: {
           profileId: currentuser.profile.profileId,
         },
@@ -55,17 +46,29 @@ export default async function handler(req, res) {
           siteWeb: siteWeb,
           resume: resume,
           user: { connect: { email: session?.user?.email } },
-          education: {
-            create: education,
-          },
-          experience: {
-            create: experience,
-          },
-          competences: {
-            create: competences,
-          },
         },
       })
+
+      await prisma.$transaction([
+        prisma.competence.deleteMany({
+          where: { profileId: currentuser.profile.profileId },
+        }),
+        prisma.education.deleteMany({
+          where: { profileId: currentuser.profile.profileId },
+        }),
+        prisma.experience.deleteMany({
+          where: { profileId: currentuser.profile.profileId },
+        }),
+        prisma.competence.createMany({
+          data: competences,
+        }),
+        prisma.education.createMany({
+          data: educations,
+        }),
+        prisma.experience.createMany({
+          data: experiences,
+        }),
+      ])
 
       res.json(result)
     } catch (error) {
